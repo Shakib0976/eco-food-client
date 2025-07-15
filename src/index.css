@@ -1,2 +1,9 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+
+.molle-regular-italic {
+    font-family: "Molle", cursive;
+    font-weight: 400;
+    font-style: italic;
+}
