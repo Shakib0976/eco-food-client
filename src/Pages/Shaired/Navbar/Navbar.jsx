@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router';
 import Logo from '../Logo/Logo';
-// import ProfastLogo from '../ProfastLogo/ProfastLogo';
-// import { AuthContext } from '../../../Contexts/AutoContext/AuthContext';
+import { motion } from "motion/react"
 
 const Navbar = () => {
 
@@ -35,7 +34,7 @@ const Navbar = () => {
 
 
     return (
-        <div className="navbar bg-base-100 shadow-sm shadow-blue-200 w-11/12 mx-auto rounded-full mt-5">
+        <div className=" sticky top-0 z-50 bg-transparent backdrop-blur-sm navbar  shadow-sm">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
