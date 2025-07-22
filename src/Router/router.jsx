@@ -8,6 +8,7 @@ import UserProfile from "../Pages/DeshBoard/UserProfile";
 import CarityRole from "../Pages/DeshBoard/CarityRole";
 import PrivateRoutes from "./PrivateRoutes";
 import Payment from "../Pages/Payment/Payment";
+import PaymentHistory from "../Pages/Payment/PaymentHistory";
 
 
 
@@ -50,6 +51,10 @@ export const router = createBrowserRouter([
             {
                 path:'payment/:ReqEmail',
                 Component: Payment,
+            },
+            {
+                path:'transactions',
+                Component:PaymentHistory,
             }
         ]
     }

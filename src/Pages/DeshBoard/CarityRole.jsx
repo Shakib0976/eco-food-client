@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 // import toast from 'react-hot-toast';
 import { AuthContext } from '../../Context/AuthContext';
-// import useAxios from '../../Hooks/useAxios';
+import useAxios from '../../Hooks/useAxios';
 import { useNavigate } from 'react-router';
 
 const CarityRole = () => {
@@ -27,7 +27,7 @@ const CarityRole = () => {
     // }, [user.email]);
 
 
-    // const axiosSecure = useAxios()
+    const axiosSecure = useAxios()
 
     const handlePayment = (e) => {
         e.preventDefault()
@@ -39,20 +39,20 @@ const CarityRole = () => {
 
 
 
-        // const charityData = {
-        //     name,
-        //     email,
-        //     orgName,
-        //     mission,
-        // };
+        const charityData = {
+            name,
+            email,
+            orgName,
+            mission,
+        };
 
-        // axiosSecure.post('/charity_request', charityData)
-        //     .then(res => {
-        //         console.log(res.data);
-        //     })
-        //     .catch(error => {
-        //         console.log(error);
-        //     })
+        axiosSecure.post('/charity_request', charityData)
+            .then(res => {
+                console.log(res.data);
+            })
+            .catch(error => {
+                console.log(error);
+            })
 
 
 
