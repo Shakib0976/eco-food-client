@@ -48,7 +48,7 @@ const AddDonation = () => {
 
 
             const apiKey = import.meta.env.VITE_IMAGE_UPLOAD_KEY;
-            const url = `https://api.imgbb.com/1/upload?expiration=600&key=${apiKey}`;
+            const url = `https://api.imgbb.com/1/upload?key=${apiKey}`;
 
             const response = await fetch(url, {
                 method: "POST",
