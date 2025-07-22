@@ -9,6 +9,7 @@ import CarityRole from "../Pages/DeshBoard/CarityRole";
 import PrivateRoutes from "./PrivateRoutes";
 import Payment from "../Pages/Payment/Payment";
 import PaymentHistory from "../Pages/Payment/PaymentHistory";
+import Forbidden from "../Pages/Forbidden";
 
 
 
@@ -29,6 +30,10 @@ export const router = createBrowserRouter([
             {
                 path: '/join',
                 Component: JoinUs
+            },
+            {
+                path:'errorPage2',
+                Component:Forbidden,
             }
         ]
     },
@@ -55,7 +60,8 @@ export const router = createBrowserRouter([
             {
                 path:'transactions',
                 Component:PaymentHistory,
-            }
+            },
+            
         ]
     }
 ]);
