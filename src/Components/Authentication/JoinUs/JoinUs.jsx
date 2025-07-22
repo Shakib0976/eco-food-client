@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import { AuthContext } from '../../../Context/AuthContext';
 import toast from 'react-hot-toast';
+import simpleAxios from '../../../Hooks/simpleAxios';
 
 
 const JoinUs = () => {
@@ -11,6 +12,7 @@ const JoinUs = () => {
     const navigate = useNavigate();
     const locations = useLocation();
     console.log(user);
+    const axiosInstance = simpleAxios();
 
     const handleJoinUs = e => {
         e.preventDefault();
@@ -36,13 +38,22 @@ const JoinUs = () => {
 
 
             createUser(email, password)
-                .then((result) => {
+                .then(async (result) => {
                     // localStorage.setItem('devtalksToken', result?.user?.accessToken);
                     toast.success('Successfully Signin')
                     navigate(locations?.state || '/', {
                         state: { toastMessage: 'Login successful!' }
                     });
                     const user = (result.user);
+                    const userInfo = {
+                        email: email,
+                        role: 'user', // default role
+                        created_at: new Date().toISOString(),
+                        last_log_in: new Date().toISOString()
+                    }
+
+                    const userRes = await axiosInstance.post('/users', userInfo);
+                    console.log(userRes.data);
 
 
 

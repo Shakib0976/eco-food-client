@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router';
-import { FaHome, FaBoxOpen, FaMoneyCheckAlt, FaUserEdit, FaSearchLocation, FaUserCheck, FaUserClock, FaUserShield, FaMotorcycle, FaTasks, FaCheckCircle, FaWallet } from 'react-icons/fa';
+import { FaHome, FaBoxOpen, FaMoneyCheckAlt, FaUserEdit, FaSearchLocation, FaUserCheck, FaUserClock, FaUserShield, FaMotorcycle, FaTasks, FaCheckCircle, FaWallet, FaUser, FaPlusCircle, FaGift, FaClipboardList } from 'react-icons/fa';
 import Logo from '../../Pages/Shaired/Logo/Logo';
 
 
@@ -76,27 +76,34 @@ const DashboardLayouts = () => {
                             Transaction History
                         </NavLink>
                     </li>
-                    {/* rider links */}
-                    {/* {!roleLoading && role === 'rider' && <>
-                        <li>
-                            <NavLink to="/dashboard/pending-deliveries">
-                                <FaTasks className="inline-block mr-2" />
-                                Pending Deliveries
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/dashboard/completed-deliveries">
-                                <FaCheckCircle className="inline-block mr-2" />
-                                Completed Deliveries
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/dashboard/my-earnings">
-                                <FaWallet className="inline-block mr-2" />
-                                My Earnings
-                            </NavLink>
-                        </li>
-                    </>} */}
+
+
+                    {/* rasturent link*/}
+                    <li>
+                        <NavLink to="/dashboard/restaurant-profile">
+                            <FaUser className="inline-block mr-2" />
+                            Restaurant Profile
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/dashboard/add-donation">
+                            <FaPlusCircle className="inline-block mr-2" />
+                            Add Donation
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/dashboard/my-donations">
+                            <FaGift className="inline-block mr-2" />
+                            My Donations
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/dashboard/requested-donations">
+                            <FaClipboardList className="inline-block mr-2" />
+                            Requested Donations
+                        </NavLink>
+                    </li>
+
 
 
                     {/* admin link */}

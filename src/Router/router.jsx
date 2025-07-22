@@ -10,6 +10,8 @@ import PrivateRoutes from "./PrivateRoutes";
 import Payment from "../Pages/Payment/Payment";
 import PaymentHistory from "../Pages/Payment/PaymentHistory";
 import Forbidden from "../Pages/Forbidden";
+import AddDonation from "../Pages/AddDonation/AddDonation";
+import MyDonation from "../Pages/AddDonation/MyDonation";
 
 
 
@@ -32,8 +34,8 @@ export const router = createBrowserRouter([
                 Component: JoinUs
             },
             {
-                path:'errorPage2',
-                Component:Forbidden,
+                path: 'errorPage2',
+                Component: Forbidden,
             }
         ]
     },
@@ -47,21 +49,29 @@ export const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                element:<UserProfile></UserProfile>
+                element: <UserProfile></UserProfile>
             },
             {
-                path:'request-charity',
-                Component:CarityRole
+                path: 'request-charity',
+                Component: CarityRole
             },
             {
-                path:'payment/:ReqEmail',
+                path: 'payment/:ReqEmail',
                 Component: Payment,
             },
             {
-                path:'transactions',
-                Component:PaymentHistory,
+                path: 'transactions',
+                Component: PaymentHistory,
             },
-            
+            {
+                path: 'add-donation',
+                Component: AddDonation,
+            },
+            {
+                path:'my-donations',
+                Component:MyDonation,
+            }
+
         ]
     }
 ]);
