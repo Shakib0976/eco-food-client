@@ -23,6 +23,9 @@ const PaymentForm = () => {
         }
     });
 
+
+    console.log(paymentInfo);
+
     const amount = paymentInfo.cost || 0;
     const reqId = paymentInfo._id;
     const amountInCents = amount * 100;
@@ -79,6 +82,7 @@ const PaymentForm = () => {
                     reqId,
                     amount,
                     email: user.email,
+                    status: 'Pending',
                     transactionId,
                     paymentMethod: result.paymentIntent.payment_method_types
                 };

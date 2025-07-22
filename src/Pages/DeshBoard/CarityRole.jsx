@@ -3,6 +3,8 @@ import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../Context/AuthContext';
 import useAxios from '../../Hooks/useAxios';
 import { useNavigate } from 'react-router';
+import { useQuery } from '@tanstack/react-query';
+import Swal from 'sweetalert2';
 
 const CarityRole = () => {
 
@@ -35,6 +37,16 @@ const CarityRole = () => {
         const email = user?.email;
         console.log(name, email, orgName, mission);
 
+
+        if (requests.length > 0) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Request Already Exists',
+                text: 'You already have a pending or approved request.',
+            });
+            return;
+        }
+
         navigate(`/dashboard/payment/${user?.email}`)
 
 
@@ -57,6 +69,20 @@ const CarityRole = () => {
 
 
     }
+
+
+    const email = user.email;
+
+    // pending data this email 
+    const { data: requests = [] } = useQuery({
+        queryKey: ['charity_requests', email],
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/charity_request?email=${email}&status=Pending`);
+            return res.data;
+        }
+    });
+
+    console.log('pendingr', requests.length)
 
 
 
