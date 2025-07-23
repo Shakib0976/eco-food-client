@@ -12,6 +12,9 @@ import PaymentHistory from "../Pages/Payment/PaymentHistory";
 import Forbidden from "../Pages/Forbidden";
 import AddDonation from "../Pages/AddDonation/AddDonation";
 import MyDonation from "../Pages/AddDonation/MyDonation";
+import ErrorPage from "../Pages/ErrorPage";
+import AdminManageDonation from "../Pages/AdminManageDonation/AdminManageDonation";
+import AllDonation from '../Pages/AddDonation/AllDonation'
 
 
 
@@ -19,6 +22,7 @@ export const router = createBrowserRouter([
     {
         path: "/",
         Component: RootLayouts,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
 
             {
@@ -36,6 +40,10 @@ export const router = createBrowserRouter([
             {
                 path: 'errorPage2',
                 Component: Forbidden,
+            },
+            {
+                path: 'allDonations',
+                element: <PrivateRoutes><AllDonation></AllDonation> </PrivateRoutes>
             }
         ]
     },
@@ -68,9 +76,13 @@ export const router = createBrowserRouter([
                 Component: AddDonation,
             },
             {
-                path:'my-donations',
-                Component:MyDonation,
-            }
+                path: 'my-donations',
+                Component: MyDonation,
+            },
+            {
+                path: 'manage-donations',
+                Component: AdminManageDonation,
+            },
 
         ]
     }

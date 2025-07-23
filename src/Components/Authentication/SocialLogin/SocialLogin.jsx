@@ -2,17 +2,19 @@ import React, { use } from 'react';
 import toast from 'react-hot-toast';
 import { useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../../../Context/AuthContext';
+import simpleAxios from '../../../Hooks/simpleAxios';
 
 const SocialLogin = () => {
     const { signInWithGoogle, setUser } = use(AuthContext);
     const navigate = useNavigate();
     const locations = useLocation();
+    const axiosInstance = simpleAxios();
 
 
 
     const handleGoogleSignIn = () => {
         signInWithGoogle()
-            .then((result) => {
+            .then(async (result) => {
                 toast.success('Successfully login')
                 // localStorage.setItem('devtalksToken', result?.user?.accessToken);
                 navigate(locations?.state || '/', {
@@ -20,6 +22,16 @@ const SocialLogin = () => {
                 });
                 const user = result.user;
                 setUser(user);
+
+                const userInfo = {
+                    email: user?.email,
+                    role: 'user', // default role
+                    created_at: new Date().toISOString(),
+                    last_log_in: new Date().toISOString()
+                }
+
+                const userRes = await axiosInstance.post('/users', userInfo);
+                console.log(userRes.data);
 
 
             }).catch((error) => {

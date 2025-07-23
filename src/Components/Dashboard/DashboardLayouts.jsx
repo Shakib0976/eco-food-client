@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router';
-import { FaHome, FaBoxOpen, FaMoneyCheckAlt, FaUserEdit, FaSearchLocation, FaUserCheck, FaUserClock, FaUserShield, FaMotorcycle, FaTasks, FaCheckCircle, FaWallet, FaUser, FaPlusCircle, FaGift, FaClipboardList } from 'react-icons/fa';
+import { FaHome, FaBoxOpen, FaMoneyCheckAlt, FaUserEdit, FaSearchLocation, FaUserCheck, FaUserClock, FaUserShield, FaMotorcycle, FaTasks, FaCheckCircle, FaWallet, FaUser, FaPlusCircle, FaGift, FaClipboardList, FaTruck, FaHandHoldingHeart, FaUsers, FaStar } from 'react-icons/fa';
 import Logo from '../../Pages/Shaired/Logo/Logo';
 
 
@@ -46,6 +46,7 @@ const DashboardLayouts = () => {
                 <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
                     {/* Sidebar content here */}
                     <NavLink to={'/'}><Logo></Logo></NavLink>
+                    <h1 className='text-red-500'>User</h1>
                     <li>
                         <NavLink to="/dashboard">
                             <FaUserEdit className="inline-block mr-2" />
@@ -79,6 +80,7 @@ const DashboardLayouts = () => {
 
 
                     {/* rasturent link*/}
+                    <h1 className='text-red-600'>Restaurant</h1>
                     <li>
                         <NavLink to="/dashboard/restaurant-profile">
                             <FaUser className="inline-block mr-2" />
@@ -104,37 +106,79 @@ const DashboardLayouts = () => {
                         </NavLink>
                     </li>
 
+                    {/* {charity link} */}
+                    <h1 className='text-red-500'>Charity link</h1>
+                    <li>
+                        <NavLink to="/dashboard/charity-profile">
+                            <FaUserEdit className="inline-block mr-2" />
+                            Charity Profile
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/dashboard/my-requests">
+                            <FaTasks className="inline-block mr-2" />
+                            My Requests
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/dashboard/my-pickups">
+                            <FaTruck className="inline-block mr-2" />
+                            My Pickups
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/dashboard/received-donations">
+                            <FaGift className="inline-block mr-2" />
+                            Received Donations
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/dashboard/transactions">
+                            <FaMoneyCheckAlt className="inline-block mr-2" />
+                            Transaction History
+                        </NavLink>
+                    </li>
 
 
                     {/* admin link */}
-                    {/* {!roleLoading && role === 'admin' &&
-                        <>
-                            <li>
-                                <NavLink to="/dashboard/assign-rider">
-                                    <FaMotorcycle className="inline-block mr-2" />
-                                    Assign Rider
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/dashboard/active-riders">
-                                    <FaUserCheck className="inline-block mr-2" />
-                                    Active Riders
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/dashboard/pending-riders">
-                                    <FaUserClock className="inline-block mr-2" />
-                                    Pending Riders
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/dashboard/makeAdmin">
-                                    <FaUserShield className="inline-block mr-2" />
-                                    Make Admin
-                                </NavLink>
-                            </li>
-                        </>
-                    } */}
+                    <h1 className='text-red-400'>Admin </h1>
+                    <li>
+                        <NavLink to="/dashboard/admin-profile">
+                            <FaUserShield className="inline-block mr-2" />
+                            Admin Profile
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/dashboard/manage-donations">
+                            <FaHandHoldingHeart className="inline-block mr-2" />
+                            Manage Donations
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/dashboard/manage-users">
+                            <FaUsers className="inline-block mr-2" />
+                            Manage Users
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/dashboard/manage-role-requests">
+                            <FaUserCheck className="inline-block mr-2" />
+                            Manage Role Requests
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/dashboard/manage-requests">
+                            <FaClipboardList className="inline-block mr-2" />
+                            Manage Requests
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/dashboard/feature-donations">
+                            <FaStar className="inline-block mr-2" />
+                            Feature Donations
+                        </NavLink>
+                    </li>
+
                 </ul>
             </div>
         </div>

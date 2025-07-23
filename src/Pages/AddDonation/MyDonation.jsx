@@ -16,7 +16,7 @@ const MyDonation = () => {
     const { data: donations = [], isLoading } = useQuery({
         queryKey: ['donations', user.email],
         queryFn: async () => {
-            const res = await axiosSecure.get(`/donations/${user.email}`);
+            const res = await axiosSecure.get(`/donations/email/${user.email}`);
             return res.data;
         },
         enabled: !!user?.email, // only fetch when email exists
@@ -33,7 +33,7 @@ const MyDonation = () => {
                 donations.length === 0 ? <EmptyCard></EmptyCard> : <div className='mb-10 mt-5'>
                     <h1 className='text-5xl text-bold text-center mt-10'> All donations </h1>
                     <p className='text-center text-bold mt-2 mb-10'>Create By Restaurant</p>
-                    <div className='w-11/12 mx-auto grid grid-cols-3 space-x-4 space-y-4'>
+                    <div className='w-11/12 mx-auto grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 space-x-4 space-y-4'>
                         {
                             donations.map(donation => <div
                                 className="relative rounded-xl h-100 overflow-hidden shadow-lg cursor-pointer group max-w-sm"
@@ -50,10 +50,6 @@ const MyDonation = () => {
                                     <span className="bg-green-600 text-white text-sm font-semibold px-3 py-1 rounded-full">
                                         {donation.status}
                                     </span>
-                                </div>
-                                <div className="absolute top-3 right-3 flex items-center gap-1 bg-black/60 text-white text-sm px-2 py-1 rounded-full">
-                                    <Clock className="w-4 h-4" />
-                                    <span>2 hours</span>
                                 </div>
 
                                 {/* Overlay content */}
@@ -98,7 +94,7 @@ const MyDonation = () => {
 
 
                                     {/* Read More - Animated */}
-                                    <div className='mt-5 mb-5'>
+                                    <div className='mt-5 m2-5'>
                                         <div className="text-orange-400 font-semibold flex justify-between gap-2"> {/* Increased gap for better spacing */}
                                             {/* Update Button */}
                                             <button
