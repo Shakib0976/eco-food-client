@@ -15,6 +15,7 @@ import MyDonation from "../Pages/AddDonation/MyDonation";
 import ErrorPage from "../Pages/ErrorPage";
 import AdminManageDonation from "../Pages/AdminManageDonation/AdminManageDonation";
 import AllDonation from '../Pages/AddDonation/AllDonation'
+import DonationDetail from "../Pages/AddDonation/DonationDetail";
 
 
 
@@ -44,7 +45,12 @@ export const router = createBrowserRouter([
             {
                 path: 'allDonations',
                 element: <PrivateRoutes><AllDonation></AllDonation> </PrivateRoutes>
+            },
+            {
+                path: 'donations/:id',
+                element: <PrivateRoutes><DonationDetail></DonationDetail></PrivateRoutes>
             }
+
         ]
     },
 
@@ -83,6 +89,7 @@ export const router = createBrowserRouter([
                 path: 'manage-donations',
                 Component: AdminManageDonation,
             },
+
 
         ]
     }

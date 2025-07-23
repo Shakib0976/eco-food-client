@@ -23,8 +23,8 @@ const FoodDonationCard = () => {
         return <Loader></Loader>
     }
 
-   
-   
+
+
 
     return (
         <div className='my-10 w-11/12 mx-auto'>
@@ -53,10 +53,10 @@ const FoodDonationCard = () => {
                             )}
                             <div
                                 className={`absolute top-2 right-2 px-3 py-1 text-xs font-semibold rounded-full border ${donation?.status === 'Available'
-                                        ? 'bg-green-100 text-green-600 border-green-300'
-                                        : donation?.status === 'Claimed'
-                                            ? 'bg-yellow-100 text-yellow-600 border-yellow-300'
-                                            : 'bg-gray-100 text-gray-600 border-gray-300'
+                                    ? 'bg-green-100 text-green-600 border-green-300'
+                                    : donation?.status === 'Claimed'
+                                        ? 'bg-yellow-100 text-yellow-600 border-yellow-300'
+                                        : 'bg-gray-100 text-gray-600 border-gray-300'
                                     }`}
                             >
                                 {donation?.status}
@@ -91,16 +91,18 @@ const FoodDonationCard = () => {
                             )}
 
                             {/* Quantity */}
-                            <p className="text-green-600 font-semibold text-sm mb-4">
-                                {donation?.quantity || 0} kg
-                            </p>
+                            <div className='flex justify-between mt-3'>
+                                <p className="text-green-600 font-semibold text-sm mb-4">
+                                    {donation?.quantity || 0} kg
+                                </p>
 
-                            {/* Button */}
-                            <Link to={`/donations/${donation?._id}`}>
-                                <button className="w-full py-2 border rounded-md text-gray-800 hover:bg-gray-100 flex justify-center items-center gap-2">
-                                    <FaEye className="text-sm" /> Details
-                                </button>
-                            </Link>
+                                {/* Button */}
+                                <Link to={`/donations/${donation?._id}`}>
+                                    <button className="w-full btn py-2 border rounded-md text-gray-800 hover:bg-green-500 flex justify-center items-center gap-2">
+                                        <FaEye className="text-sm" /> Details
+                                    </button>
+                                </Link>
+                            </div>
                         </div>
                     </div>
                 ))}
