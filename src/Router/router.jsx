@@ -16,6 +16,7 @@ import ErrorPage from "../Pages/ErrorPage";
 import AdminManageDonation from "../Pages/AdminManageDonation/AdminManageDonation";
 import AllDonation from '../Pages/AddDonation/AllDonation'
 import DonationDetail from "../Pages/AddDonation/DonationDetail";
+import FavoritesDonation from "../Pages/Favorites/FavoritesDonation";
 
 
 
@@ -89,6 +90,10 @@ export const router = createBrowserRouter([
                 path: 'manage-donations',
                 Component: AdminManageDonation,
             },
+            {
+                path: 'favorites',
+                Component: FavoritesDonation,
+            }
 
 
         ]

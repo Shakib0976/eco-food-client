@@ -1,16 +1,29 @@
-import React from 'react';
+import React, { use } from 'react';
 import { FaBoxOpen, FaBuilding, FaCheckCircle, FaClock, FaInfoCircle, FaMapMarkerAlt, FaTruckLoading, FaUtensils } from 'react-icons/fa';
 import simpleAxios from '../../Hooks/simpleAxios';
 import Swal from 'sweetalert2';
+import { AuthContext } from '../../Context/AuthContext';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+import Loader from '../Loader/Loader';
 
 const DetailsPage = ({ donateData }) => {
+
+
+    const queryClient = useQueryClient();
+    const { user } = use(AuthContext);
+    console.log(user.email)
+    const favoriteData = {
+        ...donateData,
+        userEmail: user?.email,
+        addedAt: new Date().toISOString(),
+    };
 
     const axiosSecure = simpleAxios();
 
     const handleAddToFavorite = async (e) => {
         e.preventDefault();
         try {
-            const res = await axiosSecure.post('favorites', donateData);
+            const res = await axiosSecure.post('favorites', favoriteData);
             Swal.fire({
                 icon: 'success',
                 title: 'Added to Favorites!',
@@ -33,7 +46,89 @@ const DetailsPage = ({ donateData }) => {
 
     }
 
+
+    const handlePostDonation = e => {
+
+        e.preventDefault()
+        const form = e.target;
+        const formData = new FormData(form);
+        const DonationData = Object.fromEntries(formData.entries());
+
+
+        const allDonation = {
+            ...donateData,
+            ...DonationData,
+            status: 'pending',
+        }
+        console.log(allDonation);
+
+
+        axiosSecure.post('/donations', allDonation)
+            .then(async (res) => {
+                console.log(res.data);
+                if (res.data.insertedId) {
+                    Swal.fire({
+                        title: 'Donation Added!',
+                        text: 'Your food donation was submitted successfully.',
+                        icon: 'success',
+                        confirmButtonText: 'Awesome!',
+                        confirmButtonColor: '#4f46e5', // Indigo
+                    });
+                    document.getElementById('request_modal').close();
+
+
+
+
+                }
+            })
+            .catch(eror => {
+                console.log(eror);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Failed!',
+                    text: 'Could not save data. Already data saved',
+                });
+                document.getElementById('request_modal').close();
+            })
+
+
+
+    }
+
+
+    const handleReview = async (e) => {
+        e.preventDefault()
+        const form = e.target;
+        const formData = new FormData(form);
+        const reviewData = Object.fromEntries(formData.entries());
+        const review = {
+            ...reviewData,
+            id: donation._id
+        }
+        const res = await axiosSecure.post('review', review);
+        console.log('review', res.data);
+        document.getElementById('review_modal').close();
+        queryClient.invalidateQueries(['review']);
+
+    }
+
     const donation = donateData;
+
+
+    const { data: allReview = [], isLoading } = useQuery({
+        queryKey: ['review'],
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/review/${donation._id}`);
+            return res.data;
+        },
+
+    });
+
+    if (isLoading) {
+        return <Loader></Loader>
+    }
+
+    console.log(allReview);
     return (
         <div>
             <div className="max-w-5xl mx-auto p-6 space-y-6">
@@ -124,10 +219,80 @@ const DetailsPage = ({ donateData }) => {
                     <button onClick={handleAddToFavorite} className="bg-blue-500 text-white px-4 py-2 rounded-xl hover:bg-blue-600">
                         Save to Favorites
                     </button>
+                    {/* request donation with modal */}
 
-                    <button className="bg-green-500 text-white px-4 py-2 rounded-xl hover:bg-green-600">
+                    {/* open modal */}
+                    <button
+                        className="bg-green-500 text-white px-4 py-2 rounded-xl hover:bg-green-600"
+                        onClick={() => document.getElementById('request_modal').showModal()}
+                    >
                         Request Donation
                     </button>
+
+
+                    <dialog id="request_modal" className="modal modal-bottom sm:modal-middle">
+                        <form method="dialog" onSubmit={handlePostDonation}>
+                            <div className="modal-box">
+                                <h3 className="font-bold text-lg mb-4">Request Donation</h3>
+                                <label className='text-semibold'> Title :</label>
+                                <input
+                                    type="text"
+                                    name="title"
+                                    value={donation.title}
+                                    readOnly
+                                    className="input input-bordered w-full mb-3"
+                                />
+                                <label className='text-semibold'> Restaurant name:</label>
+                                <input
+                                    type="text"
+                                    name="restaurant"
+                                    value={donation.restaurantName}
+                                    readOnly
+                                    className="input input-bordered w-full mb-3"
+                                />
+                                <label className='text-semibold'> Charity name :</label>
+                                <input
+                                    type="text"
+                                    name="charityName"
+                                    value={user.displayName}
+                                    readOnly
+                                    className="input input-bordered w-full mb-3"
+                                />
+                                <label className='text-semibold'> Charity email:</label>
+                                <input
+                                    type="email"
+                                    name="charityEmail"
+                                    value={user.email}
+                                    readOnly
+                                    className="input input-bordered w-full mb-3"
+                                />
+                                <label className='text-semibold'> Description.:</label>
+                                <textarea
+                                    name="description"
+                                    required
+                                    placeholder="Request Description"
+                                    className="textarea textarea-bordered w-full mb-3"
+                                ></textarea>
+                                <label className='text-semibold'> Pickup time :</label>
+                                <input
+                                    type="text"
+                                    name='pickupWindow'
+                                    value={donation.pickupWindow}
+                                    required
+                                    className="input input-bordered w-full mb-4"
+                                />
+
+                                <div className="modal-action">
+                                    <button type="submit" className="btn btn-success">Submit Request</button>
+                                    <button type="button" className="btn" onClick={() => document.getElementById('request_modal').close()}>
+                                        Close
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </dialog>
+
+
 
                     <button className="bg-purple-500 text-white px-4 py-2 rounded-xl hover:bg-purple-600">
                         Confirm Pickup
@@ -139,22 +304,86 @@ const DetailsPage = ({ donateData }) => {
                     <h2 className="text-xl font-semibold">Reviews</h2>
 
                     <div className="space-y-3">
-                        <div className="bg-white shadow p-3 rounded-md">
-                            <p><strong>Name:</strong> Charity ABC</p>
-                            <p><strong>Rating:</strong> ⭐⭐⭐⭐☆</p>
-                            <p>"Very helpful and timely support!"</p>
-                        </div>
+                        {
+                            allReview.map(review => <div className="bg-white shadow p-3 rounded-md">
+                                <p><strong>Name:</strong> {review.name}</p>
+                                <p>
+                                    <strong>Rating:</strong>{' '}
+                                    <span className="text-yellow-500">
+                                        {'⭐'.repeat(parseInt(review.rating))}{'☆'.repeat(5 - parseInt(review.rating))}
+                                    </span>
+                                </p>
+                                <p>{review.description}</p>
+                            </div>)
+                        }
 
-                        <div className="bg-white shadow p-3 rounded-md">
-                            <p><strong>Name:</strong> John Doe</p>
-                            <p><strong>Rating:</strong> ⭐⭐⭐⭐⭐</p>
-                            <p>"Well packaged and fresh food!"</p>
-                        </div>
+
                     </div>
 
-                    <button className="bg-indigo-500 text-white px-4 py-2 rounded-xl hover:bg-indigo-600">
-                        Add Review
-                    </button>
+                    {/* review section */}
+                    <div>
+                        {/* Open Modal Button */}
+                        <button
+                            className="bg-indigo-500 text-white px-4 py-2 rounded-xl hover:bg-indigo-600"
+                            onClick={() => document.getElementById('review_modal').showModal()}
+                        >
+                            Add Review
+                        </button>
+
+                        {/* Review Modal */}
+                        <dialog id="review_modal" className="modal modal-bottom sm:modal-middle">
+                            <form onSubmit={handleReview} method="dialog" className="modal-box">
+                                <h3 className="font-bold text-lg mb-4">Save Review</h3>
+
+                                {/* Reviewer Name */}
+                                <label className="block font-semibold mb-1">Name:</label>
+                                <input
+                                    type="text"
+                                    name="reviewerName"
+                                    placeholder="write your name"
+                                    className="input input-bordered w-full mb-3"
+                                    required
+                                />
+
+                                {/* Description */}
+                                <label className="block font-semibold mb-1">description:</label>
+                                <textarea
+                                    name="description"
+                                    placeholder="write description"
+                                    className="textarea textarea-bordered w-full mb-3"
+                                    required
+                                ></textarea>
+
+                                {/* Rating */}
+                                <label className="block font-semibold mb-1">Rating:</label>
+                                <select
+                                    name="rating"
+                                    className="select select-bordered w-full mb-4"
+                                    required
+                                >
+                                    <option value="">Give Rating</option>
+                                    <option value="1">⭐☆☆☆☆</option>
+                                    <option value="2">⭐⭐☆☆☆</option>
+                                    <option value="3">⭐⭐⭐☆☆</option>
+                                    <option value="4">⭐⭐⭐⭐☆</option>
+                                    <option value="5">⭐⭐⭐⭐⭐</option>
+                                </select>
+
+                                {/* Action Buttons */}
+                                <div className="modal-action">
+                                    <button type="submit" className="btn btn-primary">Submit</button>
+                                    <button
+                                        type="button"
+                                        className="btn"
+                                        onClick={() => document.getElementById('review_modal').close()}
+                                    >
+                                        Close
+                                    </button>
+                                </div>
+                            </form>
+                        </dialog>
+
+                    </div>
                 </div>
             </div>
         </div>
