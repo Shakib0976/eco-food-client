@@ -12,13 +12,55 @@ const DetailsPage = ({ donateData }) => {
     const queryClient = useQueryClient();
     const { user } = use(AuthContext);
     console.log(user.email)
+    console.log(donateData);
+
+    // ✅ Status Label & Color Setup
+    let DonationStatus = '';
+
+    if (donateData.status == 'Verified') {
+        DonationStatus = 'Available';
+
+    } else if (donateData.status == 'Requested') {
+        DonationStatus = 'Requested';
+
+    } else if (donateData.status == 'Accepted') {
+        DonationStatus = 'Accepted';
+
+    } else if (donateData.status == 'Assigned') {
+        DonationStatus = 'Assigned';
+
+    } else {
+        DonationStatus = 'Unavailable';
+    }
+
+
+
     const favoriteData = {
         ...donateData,
         userEmail: user?.email,
         addedAt: new Date().toISOString(),
     };
 
+
+
+
+
+
+
     const axiosSecure = simpleAxios();
+
+    const { data: reqDonation } = useQuery({
+        queryKey: ['pickupReq'],
+        queryFn: async () => {
+            const res = await axiosSecure.get(`pickupReq/${donateData._id}`);
+            return res.data
+        }
+    })
+
+    console.log(reqDonation);
+
+
+
 
     const handleAddToFavorite = async (e) => {
         e.preventDefault();
@@ -47,7 +89,9 @@ const DetailsPage = ({ donateData }) => {
     }
 
 
-    const handlePostDonation = e => {
+    // only cherity requested
+
+    const handlePostDonation = async (e) => {
 
         e.preventDefault()
         const form = e.target;
@@ -65,39 +109,45 @@ const DetailsPage = ({ donateData }) => {
             restaurantName: donation.restaurantName,
             restaurantEmail: donation.restaurantEmail,
             ...DonationData,
-            status: 'Pending',
+            status: 'Requested',
             createdAt: new Date()
         };
         console.log(allDonation);
 
 
-        axiosSecure.post('/pickupReq', allDonation)
-            .then(async (res) => {
-                console.log(res.data);
-                if (res.data.insertedId) {
-                    Swal.fire({
-                        title: 'Donation Added!',
-                        text: 'Your food donation was submitted successfully.',
-                        icon: 'success',
-                        confirmButtonText: 'Awesome!',
-                        confirmButtonColor: '#4f46e5', // Indigo
-                    });
-                    document.getElementById('request_modal').close();
+        try {
 
+            const res = await axiosSecure.post('/pickupReq', allDonation);
 
+            if (res.data.insertedId) {
 
-
-                }
-            })
-            .catch(eror => {
-                console.log(eror);
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Failed!',
-                    text: 'Could not save data. Already data saved',
+                await axiosSecure.patch(`/donations/${donation._id}`, {
+                    status: 'Requested'
                 });
+
+
+                queryClient.invalidateQueries(['donations']);
+
+                Swal.fire({
+                    title: 'Donation Requested!',
+                    text: 'Your food request was submitted successfully.',
+                    icon: 'success',
+                    confirmButtonText: 'Awesome!',
+                    confirmButtonColor: '#4f46e5',
+                });
+
                 document.getElementById('request_modal').close();
-            })
+            }
+
+        } catch (error) {
+            console.error(error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Failed!',
+                text: 'Something went wrong or already requested.',
+            });
+            document.getElementById('request_modal').close();
+        }
 
 
 
@@ -214,8 +264,9 @@ const DetailsPage = ({ donateData }) => {
                                 <FaCheckCircle className="w-5 h-5 mr-2 text-gray-500" />
                                 <span className="font-semibold text-lg">Status:</span>
                             </div>
-                            <span className={`inline-block ml-7 px-3 py-1 rounded-full text-sm font-medium`}>
-                                {donation.status}
+
+                            <span className='bg-green-300  w-25 inline-block ml-7 px-4 py-1 rounded-full text-sm font-medium'>
+                                {DonationStatus}
                             </span>
                         </div>
 
@@ -302,9 +353,14 @@ const DetailsPage = ({ donateData }) => {
 
 
 
-                    <button className="bg-purple-500 text-white px-4 py-2 rounded-xl hover:bg-purple-600">
-                        Confirm Pickup
-                    </button>
+
+
+
+                    {
+                        DonationStatus == "Assigned" && <button  className="bg-purple-500 text-white px-4 py-2 rounded-xl hover:bg-purple-600">
+                            Confirm Pickup
+                        </button>
+                    }
                 </div>
 
                 {/* Reviews Section */}

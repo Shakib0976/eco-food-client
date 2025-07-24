@@ -1,17 +1,20 @@
 import React, { use } from 'react';
 import Loader from '../Loader/Loader';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { AuthContext } from '../../Context/AuthContext';
 import useAxios from '../../Hooks/useAxios';
 import { ArrowRight, Clock, Package, Pizza, Utensils } from 'lucide-react';
 import { FiEdit, FiTrash2 } from 'react-icons/fi';
 import EmptyCard from '../Shaired/EmptyCard/EmptyCard';
+import Swal from 'sweetalert2';
+import { Link } from 'react-router';
 
 const MyDonation = () => {
 
 
     const { user } = use(AuthContext);
     const axiosSecure = useAxios();
+    const queryClient = useQueryClient();
 
     const { data: donations = [], isLoading } = useQuery({
         queryKey: ['donations', user.email],
@@ -27,6 +30,35 @@ const MyDonation = () => {
     if (isLoading) {
         return <Loader></Loader>
     }
+
+
+    const handleDelete = async (id) => {
+        const confirm = await Swal.fire({
+            title: 'Are you sure?',
+            text: "This action cannot be undone!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it!'
+        });
+
+        if (confirm.isConfirmed) {
+            try {
+                const res = await axiosSecure.delete(`/donations/${id}`);
+                if (res.data.success) {
+                    Swal.fire('Deleted!', res.data.message, 'success');
+                    queryClient.invalidateQueries(['donations', user.email]);
+                } else {
+                    Swal.fire('Error', res.data.message, 'error');
+                }
+            } catch (err) {
+                console.error(err);
+                Swal.fire('Error', 'Failed  delete donation.', 'error');
+            }
+        }
+    };
+
     return (
         <div>
             {
@@ -97,7 +129,7 @@ const MyDonation = () => {
                                     <div className='mt-5 m2-5'>
                                         <div className="text-orange-400 font-semibold flex justify-between gap-2"> {/* Increased gap for better spacing */}
                                             {/* Update Button */}
-                                            <button
+                                            <Link to={`updateDonation/${donation._id}`}
                                                 className="flex items-center gap-1 px-4 py-2 rounded-md transition-all duration-300 ease-in-out
                                 transform hover:scale-105
                                focus:outline-none focus:ring-4 focus:ring-orange-300 focus:ring-opacity-75"
@@ -105,14 +137,14 @@ const MyDonation = () => {
                                             >
                                                 <FiEdit className="text-lg" /> {/* Edit icon */}
                                                 Update
-                                            </button>
+                                            </Link>
 
                                             {/* Delete Button */}
                                             <button
                                                 className="flex items-center gap-1 px-4 py-2 rounded-md transition-all duration-300 ease-in-out
                                 transform hover:scale-105
                                focus:outline-none focus:ring-4 focus:ring-red-300 focus:ring-opacity-75"
-                                                onClick={() => console.log('Delete button clicked')} // Add your delete logic here
+                                                onClick={() => handleDelete(donation._id)} // Add your delete logic here
                                             >
                                                 <FiTrash2 className="text-lg" /> {/* Trash icon */}
                                                 Delete

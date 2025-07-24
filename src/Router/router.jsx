@@ -18,6 +18,7 @@ import AllDonation from '../Pages/AddDonation/AllDonation'
 import DonationDetail from "../Pages/AddDonation/DonationDetail";
 import FavoritesDonation from "../Pages/Favorites/FavoritesDonation";
 import RequestDonation from "../Pages/AddDonation/RequestDonation";
+import UpdateDonation from "../Pages/AddDonation/UpdateDonation";
 
 
 
@@ -98,6 +99,10 @@ export const router = createBrowserRouter([
             {
                 path: 'requested-donations',
                 Component: RequestDonation,
+            },
+            {
+                path: 'my-donations/updateDonation/:id',
+                Component: UpdateDonation
             }
 
 

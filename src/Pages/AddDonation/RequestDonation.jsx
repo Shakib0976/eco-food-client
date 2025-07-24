@@ -12,7 +12,10 @@ const RequestDonation = () => {
         queryKey: ['pickupReq'],
         queryFn: async () => {
             const res = await axiosSecure.get(`/pickupReq`);
-            return res.data
+            const data = res.data;
+
+            console.log("Fetched requestData:", data);
+            return Array.isArray(data) ? data : [];
         }
     })
 
@@ -23,7 +26,7 @@ const RequestDonation = () => {
 
 
 
-    const updateStatus = async (id, newStatus) => {
+    const updateStatus = async (id, donationId, newStatus) => {
         setDisabledButton(newStatus);
         try {
             const result = await axiosSecure.patch(`pickupReq/${id}`, {
@@ -32,7 +35,12 @@ const RequestDonation = () => {
 
 
             if (result.data.modified > 0 || result.data.modifiedCount > 0) {
+                await axiosSecure.patch(`/donations/${donationId}`, {
+                    status: 'Assigned'
+                });
+
                 queryClient.invalidateQueries(['pickupReq']);
+
             }
 
         } catch (err) {
@@ -40,8 +48,8 @@ const RequestDonation = () => {
         }
     };
 
-    const handleVerify = (id) => {
-        updateStatus(id, "Accepted");
+    const handleVerify = (id, donId) => {
+        updateStatus(id, donId, "Accepted");
     };
 
     const handleReject = (id) => {
@@ -53,7 +61,7 @@ const RequestDonation = () => {
         <div className='w-11/12 mx-auto mt-10'>
             <div className="overflow-x-auto w-full">
                 {
-                    requestData?.length == 0 ? <h1>no request data available</h1> : <div className="min-w-[800px] md:min-w-full">
+                    requestData ? <div className="min-w-[800px] md:min-w-full">
                         <table className="w-full text-sm text-left border-collapse border border-gray-200">
                             <thead className="bg-gray-100 text-gray-700">
                                 <tr>
@@ -86,10 +94,10 @@ const RequestDonation = () => {
                                             </span>
                                         </td>
                                         <td className="px-4  py-2 border text-center space-x-2">
-                                            {req.status === "Pending" && (
+                                            {req.status === "Requested" && (
                                                 <div className='flex'>
                                                     <button
-                                                        onClick={() => handleVerify(req._id)}
+                                                        onClick={() => handleVerify(req._id, req.donationId)}
                                                         disabled={disabledButton === "Accepted"}
                                                         className={`px-3 py-1 rounded mr-2 transition-all duration-200 ${disabledButton === "verified"
                                                             ? "bg-gray-400 text-gray-200 cursor-not-allowed"
@@ -115,7 +123,7 @@ const RequestDonation = () => {
                                 ))}
                             </tbody>
                         </table>
-                    </div>
+                    </div> : <h1>no request data available</h1>
                 }
             </div>
         </div>
