@@ -19,6 +19,8 @@ import DonationDetail from "../Pages/AddDonation/DonationDetail";
 import FavoritesDonation from "../Pages/Favorites/FavoritesDonation";
 import RequestDonation from "../Pages/AddDonation/RequestDonation";
 import UpdateDonation from "../Pages/AddDonation/UpdateDonation";
+import MYRequest from "../Pages/AddDonation/MYRequest";
+import MyPickup from "../Pages/AddDonation/MyPickup";
 
 
 
@@ -103,6 +105,14 @@ export const router = createBrowserRouter([
             {
                 path: 'my-donations/updateDonation/:id',
                 Component: UpdateDonation
+            },
+            {
+                path:'my-requests',
+                Component: MYRequest,
+            },
+            {
+                path:'my-pickups',
+                Component: MyPickup
             }
 
 

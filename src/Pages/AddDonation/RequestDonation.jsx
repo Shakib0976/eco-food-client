@@ -26,7 +26,7 @@ const RequestDonation = () => {
 
 
 
-    const updateStatus = async (id, donationId, newStatus) => {
+    const updateStatus = async (id, donationId, newStatus, charityName, charityEmail) => {
         setDisabledButton(newStatus);
         try {
             const result = await axiosSecure.patch(`pickupReq/${id}`, {
@@ -36,7 +36,9 @@ const RequestDonation = () => {
 
             if (result.data.modified > 0 || result.data.modifiedCount > 0) {
                 await axiosSecure.patch(`/donations/${donationId}`, {
-                    status: 'Assigned'
+                    status: 'Assigned',
+                    charityName,
+                    charityEmail,
                 });
 
                 queryClient.invalidateQueries(['pickupReq']);
@@ -48,8 +50,8 @@ const RequestDonation = () => {
         }
     };
 
-    const handleVerify = (id, donId) => {
-        updateStatus(id, donId, "Accepted");
+    const handleVerify = (id, donId, charityName, charityEmail) => {
+        updateStatus(id, donId, "Accepted", charityName, charityEmail);
     };
 
     const handleReject = (id) => {
@@ -97,7 +99,7 @@ const RequestDonation = () => {
                                             {req.status === "Requested" && (
                                                 <div className='flex'>
                                                     <button
-                                                        onClick={() => handleVerify(req._id, req.donationId)}
+                                                        onClick={() => handleVerify(req._id, req.donationId, req.charityName, req.charityEmail)}
                                                         disabled={disabledButton === "Accepted"}
                                                         className={`px-3 py-1 rounded mr-2 transition-all duration-200 ${disabledButton === "verified"
                                                             ? "bg-gray-400 text-gray-200 cursor-not-allowed"

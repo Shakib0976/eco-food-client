@@ -106,6 +106,7 @@ const DetailsPage = ({ donateData }) => {
             pickupWindow: donation.pickupWindow,
             location: donation.location,
             image: donation.image,
+            quantity: donation.quantity,
             restaurantName: donation.restaurantName,
             restaurantEmail: donation.restaurantEmail,
             ...DonationData,
@@ -357,7 +358,7 @@ const DetailsPage = ({ donateData }) => {
 
 
                     {
-                        DonationStatus == "Assigned" && <button  className="bg-purple-500 text-white px-4 py-2 rounded-xl hover:bg-purple-600">
+                        DonationStatus == "Assigned" && <button className="bg-purple-500 text-white px-4 py-2 rounded-xl hover:bg-purple-600">
                             Confirm Pickup
                         </button>
                     }
