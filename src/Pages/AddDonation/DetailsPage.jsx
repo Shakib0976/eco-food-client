@@ -56,14 +56,22 @@ const DetailsPage = ({ donateData }) => {
 
 
         const allDonation = {
-            ...donateData,
+            donationId: donation._id,
+            title: donation.title,
+            foodType: donation.foodType,
+            pickupWindow: donation.pickupWindow,
+            location: donation.location,
+            image: donation.image,
+            restaurantName: donation.restaurantName,
+            restaurantEmail: donation.restaurantEmail,
             ...DonationData,
-            status: 'pending',
-        }
+            status: 'Pending',
+            createdAt: new Date()
+        };
         console.log(allDonation);
 
 
-        axiosSecure.post('/donations', allDonation)
+        axiosSecure.post('/pickupReq', allDonation)
             .then(async (res) => {
                 console.log(res.data);
                 if (res.data.insertedId) {
@@ -277,7 +285,7 @@ const DetailsPage = ({ donateData }) => {
                                 <input
                                     type="text"
                                     name='pickupWindow'
-                                    value={donation.pickupWindow}
+                                    value={donation?.pickupWindow}
                                     required
                                     className="input input-bordered w-full mb-4"
                                 />
@@ -305,7 +313,7 @@ const DetailsPage = ({ donateData }) => {
 
                     <div className="space-y-3">
                         {
-                            allReview.map(review => <div className="bg-white shadow p-3 rounded-md">
+                            allReview.length == 0 ? <div> No Review available</div> : allReview.map(review => <div className="bg-white shadow p-3 rounded-md">
                                 <p><strong>Name:</strong> {review.name}</p>
                                 <p>
                                     <strong>Rating:</strong>{' '}

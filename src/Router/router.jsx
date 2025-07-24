@@ -17,6 +17,7 @@ import AdminManageDonation from "../Pages/AdminManageDonation/AdminManageDonatio
 import AllDonation from '../Pages/AddDonation/AllDonation'
 import DonationDetail from "../Pages/AddDonation/DonationDetail";
 import FavoritesDonation from "../Pages/Favorites/FavoritesDonation";
+import RequestDonation from "../Pages/AddDonation/RequestDonation";
 
 
 
@@ -93,6 +94,10 @@ export const router = createBrowserRouter([
             {
                 path: 'favorites',
                 Component: FavoritesDonation,
+            },
+            {
+                path: 'requested-donations',
+                Component: RequestDonation,
             }
 
 

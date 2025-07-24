@@ -40,7 +40,7 @@ const Banner = () => {
             </div>
 
             {/* Right Section (Image Slider) */}
-            <div className="relative flex-1 rounded-tl-[200px] hidden md:block w-full h-full min-h-[500px] overflow-hidden">
+            <div className="relative flex-1  my-20 rounded-tl-[200px] hidden md:block w-full  min-h-[500px] overflow-hidden">
                 {images.map((image, index) => (
                     <motion.img
 

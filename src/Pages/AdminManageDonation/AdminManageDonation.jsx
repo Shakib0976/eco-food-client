@@ -7,7 +7,7 @@ const AdminManageDonation = () => {
     const axiosSecure = useAxios();
     const [disabledButton, setDisabledButton] = useState(null);
     const queryClient = useQueryClient();
-  
+
 
 
     const { data: donations = [], isLoading } = useQuery({
@@ -72,8 +72,8 @@ const AdminManageDonation = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {donations.map((donation) => (
-                        <tr key={donation._id} className="hover:bg-gray-50">
+                    {donations.map((donation , index) => (
+                        <tr key={`${donation._id}-${index}`} className="hover:bg-gray-50">
                             <td className="px-4 py-2 border">{donation.title}</td>
                             <td className="px-4 py-2 border">{donation.foodType}</td>
                             <td className="px-4 py-2 border">{donation.restaurantName}</td>
