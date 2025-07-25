@@ -47,6 +47,7 @@ const JoinUs = () => {
                     const user = (result.user);
                     const userInfo = {
                         email: email,
+                        name: name,
                         role: 'user', // default role
                         created_at: new Date().toISOString(),
                         last_log_in: new Date().toISOString()

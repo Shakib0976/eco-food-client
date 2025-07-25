@@ -198,7 +198,11 @@ const DetailsPage = ({ donateData }) => {
         const reviewData = Object.fromEntries(formData.entries());
         const review = {
             ...reviewData,
-            id: donation._id
+            id: donation._id,
+            donationTitle: donation.title,
+            restaurantName: donation.restaurantName,
+            reviewerEmail: user.email,
+            createdAt: new Date().toISOString()
         }
         const res = await axiosSecure.post('review', review);
         console.log('review', res.data);

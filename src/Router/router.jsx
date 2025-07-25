@@ -22,6 +22,8 @@ import UpdateDonation from "../Pages/AddDonation/UpdateDonation";
 import MYRequest from "../Pages/AddDonation/MYRequest";
 import MyPickup from "../Pages/AddDonation/MyPickup";
 import RecivedDonation from "../Pages/AddDonation/RecivedDonation";
+import MyReview from "../Pages/AddDonation/MyReview";
+import ManageUser from "../Pages/AdminManagement.jsx/ManageUser";
 
 
 
@@ -118,6 +120,14 @@ export const router = createBrowserRouter([
             {
                 path: 'received-donations',
                 Component: RecivedDonation,
+            },
+            {
+                path: 'reviews',
+                Component: MyReview
+            },
+            {
+                path: 'manage-users',
+                Component: ManageUser
             }
 
 
