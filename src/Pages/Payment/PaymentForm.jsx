@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { useQuery } from '@tanstack/react-query';
 import useAxios from '../../Hooks/useAxios';
 import Loader from '../../Pages/Loader/Loader';
@@ -15,6 +15,8 @@ const PaymentForm = () => {
     const axiosSecure = useAxios();
     const { user } = useContext(AuthContext);
 
+    const navigate = useNavigate();
+
     const { isPending, data: paymentInfo = {} } = useQuery({
         queryKey: ['charity_request', ReqEmail],
         queryFn: async () => {
@@ -25,6 +27,12 @@ const PaymentForm = () => {
 
 
     console.log(paymentInfo);
+    const UserName = paymentInfo.name
+    const OrgName = paymentInfo.orgName
+    const Mission = paymentInfo.mission
+    const Useremail = paymentInfo.email
+
+
 
     const amount = paymentInfo.cost || 0;
     const reqId = paymentInfo._id;
@@ -80,6 +88,10 @@ const PaymentForm = () => {
                 // Step 4: Save payment info
                 const paymentData = {
                     reqId,
+                    UserName,
+                    Useremail,
+                    OrgName,
+                    Mission,
                     amount,
                     email: user.email,
                     status: 'Pending',
@@ -89,6 +101,8 @@ const PaymentForm = () => {
 
                 const paymentRes = await axiosSecure.post('/payments', paymentData);
 
+                console.log(paymentRes);
+
                 if (paymentRes.data.insertedId) {
                     await Swal.fire({
                         icon: 'success',
@@ -96,6 +110,7 @@ const PaymentForm = () => {
                         html: `<strong>Transaction ID:</strong> <code>${transactionId}</code>`,
                         confirmButtonText: 'Go to My Parcels',
                     });
+                    navigate('/dashBoard')
                 }
             }
         }

@@ -24,6 +24,9 @@ import MyPickup from "../Pages/AddDonation/MyPickup";
 import RecivedDonation from "../Pages/AddDonation/RecivedDonation";
 import MyReview from "../Pages/AddDonation/MyReview";
 import ManageUser from "../Pages/AdminManagement.jsx/ManageUser";
+import ManageRole from "../Pages/AdminManagement.jsx/ManageRole";
+import ManageRequest from "../Pages/AdminManagement.jsx/ManageRequest";
+import FeatureDonation from "../Pages/AdminManagement.jsx/FeatureDonation";
 
 
 
@@ -58,6 +61,7 @@ export const router = createBrowserRouter([
                 path: 'donations/:id',
                 element: <PrivateRoutes><DonationDetail></DonationDetail></PrivateRoutes>
             }
+
 
         ]
     },
@@ -128,6 +132,19 @@ export const router = createBrowserRouter([
             {
                 path: 'manage-users',
                 Component: ManageUser
+            },
+            {
+                path: 'manage-role-requests',
+                Component: ManageRole
+            },
+            {
+                path: 'manage-requests',
+                Component: ManageRequest
+            },
+
+            {
+                path : 'feature-donations',
+                Component : FeatureDonation
             }
 
 

@@ -1,17 +1,19 @@
-import React, { useState } from 'react';
+import React, { use, useState } from 'react';
 import useAxios from '../../Hooks/useAxios';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import Loader from '../Loader/Loader';
+import { AuthContext } from '../../Context/AuthContext';
 
 const RequestDonation = () => {
     const [disabledButton, setDisabledButton] = useState(null);
     const queryClient = useQueryClient();
+    const { user } = use(AuthContext);
 
     const axiosSecure = useAxios();
     const { data: requestData = [], isLoading } = useQuery({
-        queryKey: ['pickupReq'],
+        queryKey: ['pickupReqByRestaurant', user?.email],
         queryFn: async () => {
-            const res = await axiosSecure.get(`/pickupReq`);
+            const res = await axiosSecure.get(`/pickupReq/restaurant/${user?.email}`);
             const data = res.data;
 
             console.log("Fetched requestData:", data);

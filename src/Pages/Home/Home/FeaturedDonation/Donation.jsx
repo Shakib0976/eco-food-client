@@ -10,9 +10,9 @@ const Donation = () => {
     const axiosSecure = simpleAxios();
 
     const { data: donations = [], isLoading } = useQuery({
-        queryKey: ['donations'],
+        queryKey: ['/feature'],
         queryFn: async () => {
-            const res = await axiosSecure.get(`/donations`);
+            const res = await axiosSecure.get(`/feature`);
             return res.data;
         },
     });

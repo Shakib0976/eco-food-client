@@ -35,7 +35,7 @@ const CarityRole = () => {
         e.preventDefault()
         const name = user?.displayName;
         const email = user?.email;
-        console.log(name, email, orgName, mission);
+     
 
 
         if (requests.length > 0) {
@@ -50,7 +50,7 @@ const CarityRole = () => {
         navigate(`/dashboard/payment/${user?.email}`)
 
 
-
+    
         const charityData = {
             name,
             email,
@@ -86,46 +86,11 @@ const CarityRole = () => {
 
 
 
-    // const handlePayment = async () => {
-    //     if (!orgName || !mission) {
-    //         toast.error("Please fill in all required fields.");
-    //         return;
-    //     }
-
-    //     const stripe = await stripePromise;
-
-    //     // Call your backend to create a Stripe Checkout session
-    //     const response = await fetch("/api/create-checkout-session", {
-    //         method: "POST",
-    //         headers: { "Content-Type": "application/json" },
-    //         body: JSON.stringify({
-    //             amount: 2500, // $25 in cents
-    //             email: user.email,
-    //             purpose: "Charity Role Request",
-    //             orgName,
-    //             mission,
-    //         }),
-    //     });
-
-    //     const session = await response.json();
-
-    //     if (session?.id) {
-    //         await stripe.redirectToCheckout({ sessionId: session.id });
-    //     } else {
-    //         toast.error("Stripe session creation failed.");
-    //     }
-    // };
+    
     return (
         <div className="lg:w-8/12 md:10/12 mt-10 mx-auto p-6 border rounded shadow">
             <h2 className="text-2xl font-bold mb-4">Request Charity Role</h2>
 
-            {/* {isPending ? (
-                <p className="text-red-600 font-medium">
-                    You already have a pending or approved request.
-                </p>
-            ) : (
-               
-            )} */}
 
             <form
                 onSubmit={handlePayment}
