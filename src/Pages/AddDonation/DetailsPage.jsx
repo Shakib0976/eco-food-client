@@ -25,6 +25,8 @@ const DetailsPage = ({ donateData }) => {
 
     } else if (donateData.status == 'Accepted') {
         DonationStatus = 'Accepted';
+    } else if (donateData.status == 'Picked Up') {
+        DonationStatus = 'Picked Up';
 
     } else if (donateData.status == 'Assigned') {
         DonationStatus = 'Assigned';
@@ -60,7 +62,41 @@ const DetailsPage = ({ donateData }) => {
     console.log(reqDonation);
 
 
+    //    handle pickup 
+    const handleConfirmPickup = async () => {
+        try {
+            const res = await axiosSecure.patch(`/pickupReq/charity/${donateData._id}`, {
+                email: user.email,
+                status: 'Picked Up'
+            });
 
+            if (res.data.success) {
+                Swal.fire({
+                    title: 'Pickup Confirmed!',
+                    text: 'The status has been updated to Picked Up.',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                });
+
+                // Refresh the data
+                queryClient.invalidateQueries(['pickupReq']);
+            } else {
+                Swal.fire({
+                    title: 'Update Failed',
+                    text: res.data.message || 'Could not update the status.',
+                    icon: 'error',
+                    confirmButtonText: 'Retry'
+                });
+            }
+        } catch (err) {
+            Swal.fire({
+                title: 'Error',
+                text: err.message || 'Something went wrong.',
+                icon: 'error',
+                confirmButtonText: 'Close'
+            });
+        }
+    }
 
     const handleAddToFavorite = async (e) => {
         e.preventDefault();
@@ -358,7 +394,7 @@ const DetailsPage = ({ donateData }) => {
 
 
                     {
-                        DonationStatus == "Assigned" && <button className="bg-purple-500 text-white px-4 py-2 rounded-xl hover:bg-purple-600">
+                        DonationStatus == "Assigned" && <button onClick={() => handleConfirmPickup()} className="bg-purple-500 text-white px-4 py-2 rounded-xl hover:bg-purple-600">
                             Confirm Pickup
                         </button>
                     }
