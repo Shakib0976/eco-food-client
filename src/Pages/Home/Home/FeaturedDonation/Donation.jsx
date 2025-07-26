@@ -4,6 +4,8 @@ import { ArrowRight, Clock } from "lucide-react";
 import simpleAxios from '../../../../Hooks/simpleAxios';
 import { useQuery } from '@tanstack/react-query';
 import Loader from '../../../Loader/Loader';
+import { FaEye } from 'react-icons/fa';
+import { Link } from 'react-router';
 
 const Donation = () => {
 
@@ -93,9 +95,10 @@ const Donation = () => {
 
                                     {/* Read More - Animated */}
                                     <div className="mt-10 mb-5">
-                                        <p className="text-orange-500 font-semibold flex items-center gap-1 cursor-pointer hover:underline">
-                                            Read More <ArrowRight className="w-4 h-4" />
-                                        </p>
+                                        <Link to={`/donations/${donation?._id}`}>
+                                            <p className="text-orange-500 font-semibold flex items-center gap-1 cursor-pointer hover:underline">
+                                               View  Details <ArrowRight className="w-4 h-4" />
+                                            </p></Link>
                                     </div>
                                 </div>
 
