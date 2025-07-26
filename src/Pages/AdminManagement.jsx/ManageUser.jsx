@@ -1,13 +1,13 @@
 import React from 'react';
-import simpleAxios from '../../Hooks/simpleAxios';
 import { useQuery } from '@tanstack/react-query';
 import Loader from '../Loader/Loader';
 import toast from 'react-hot-toast';
 import Swal from 'sweetalert2';
+import useAxios from '../../Hooks/useAxios';
 
 const ManageUser = () => {
 
-    const axiosSecure = simpleAxios();
+    const axiosSecure = useAxios();
     const { data: Allusers, isLoading, refetch } = useQuery({
         queryKey: ['Allusers'],
         queryFn: async () => {

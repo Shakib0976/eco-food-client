@@ -16,9 +16,12 @@ const AllCherityReq = () => {
     })
 
 
-    const latestRequests = [...allChrityReq]
-        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-        .slice(0, 3);
+    const latestRequests = Array.isArray(allChrityReq)
+        ? [...allChrityReq]
+            .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+            .slice(0, 3)
+        : [];
+
 
 
 

@@ -1,10 +1,10 @@
 import React, { use } from 'react';
 import { FaBoxOpen, FaBuilding, FaCheckCircle, FaClock, FaInfoCircle, FaMapMarkerAlt, FaTruckLoading, FaUtensils } from 'react-icons/fa';
-import simpleAxios from '../../Hooks/simpleAxios';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../Context/AuthContext';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import Loader from '../Loader/Loader';
+import useAxios from '../../Hooks/useAxios';
 
 const DetailsPage = ({ donateData }) => {
 
@@ -49,7 +49,7 @@ const DetailsPage = ({ donateData }) => {
 
 
 
-    const axiosSecure = simpleAxios();
+    const axiosSecure = useAxios();
 
     const { data: reqDonation } = useQuery({
         queryKey: ['pickupReq'],

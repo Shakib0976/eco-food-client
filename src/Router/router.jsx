@@ -27,6 +27,10 @@ import ManageUser from "../Pages/AdminManagement.jsx/ManageUser";
 import ManageRole from "../Pages/AdminManagement.jsx/ManageRole";
 import ManageRequest from "../Pages/AdminManagement.jsx/ManageRequest";
 import FeatureDonation from "../Pages/AdminManagement.jsx/FeatureDonation";
+import AdminRoute from "./AdminRoute";
+import UserRoute from "./UserRoute"
+import ResturentRoute from "./ResturentRoute";
+import CherityRoute from "./CherityRoute";
 
 
 
@@ -44,6 +48,11 @@ export const router = createBrowserRouter([
             {
                 path: '/login',
                 Component: Login
+            },
+            {
+                path: '/forbidden',
+                Component: Forbidden
+
             },
             {
                 path: '/join',
@@ -79,7 +88,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'request-charity',
-                Component: CarityRole
+                element: <UserRoute><CarityRole></CarityRole></UserRoute>
             },
             {
                 path: 'payment/:ReqEmail',
@@ -87,27 +96,27 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'transactions',
-                Component: PaymentHistory,
+                Component: PaymentHistory
             },
             {
                 path: 'add-donation',
-                Component: AddDonation,
+                element: <ResturentRoute><AddDonation></AddDonation></ResturentRoute>
             },
             {
                 path: 'my-donations',
-                Component: MyDonation,
+                element: <ResturentRoute><MyDonation></MyDonation></ResturentRoute>
             },
             {
                 path: 'manage-donations',
-                Component: AdminManageDonation,
+                element: <AdminRoute><AdminManageDonation></AdminManageDonation></AdminRoute>
             },
             {
                 path: 'favorites',
-                Component: FavoritesDonation,
+                element: <UserRoute><FavoritesDonation></FavoritesDonation></UserRoute>
             },
             {
                 path: 'requested-donations',
-                Component: RequestDonation,
+                element: <ResturentRoute><RequestDonation></RequestDonation></ResturentRoute>
             },
             {
                 path: 'my-donations/updateDonation/:id',
@@ -115,36 +124,37 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'my-requests',
-                Component: MYRequest,
+                element: <CherityRoute><MYRequest></MYRequest></CherityRoute>
             },
             {
                 path: 'my-pickups',
-                Component: MyPickup
+                element: <CherityRoute><MyPickup></MyPickup></CherityRoute>
             },
             {
                 path: 'received-donations',
-                Component: RecivedDonation,
+                element: <CherityRoute><RecivedDonation></RecivedDonation></CherityRoute>
             },
             {
                 path: 'reviews',
-                Component: MyReview
+                element: <UserRoute><MyReview></MyReview></UserRoute>
             },
             {
                 path: 'manage-users',
-                Component: ManageUser
+                element: <AdminRoute><ManageUser></ManageUser></AdminRoute>
             },
             {
                 path: 'manage-role-requests',
-                Component: ManageRole
+                element: <AdminRoute><ManageRole></ManageRole></AdminRoute>
+
             },
             {
                 path: 'manage-requests',
-                Component: ManageRequest
+                element: <AdminRoute><ManageRequest></ManageRequest></AdminRoute>
             },
 
             {
-                path : 'feature-donations',
-                Component : FeatureDonation
+                path: 'feature-donations',
+                element: <AdminRoute><FeatureDonation></FeatureDonation></AdminRoute>
             }
 
 

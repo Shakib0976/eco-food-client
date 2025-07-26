@@ -1,5 +1,4 @@
 import React from 'react';
-import simpleAxios from '../../Hooks/simpleAxios';
 import { useQuery } from '@tanstack/react-query';
 import { Link, useParams } from 'react-router';
 import imageCompression from 'browser-image-compression';
@@ -8,10 +7,11 @@ import Swal from 'sweetalert2';
 import { AuthContext } from '../../Context/AuthContext';
 import axios from 'axios';
 import { FaArrowLeft } from 'react-icons/fa';
+import useAxios from '../../Hooks/useAxios';
 
 const UpdateDonation = () => {
     const { id } = useParams();
-    const axiosSecure = simpleAxios();
+    const axiosSecure = useAxios();
     const { user } = React.useContext(AuthContext);
 
     const { data: donation, isLoading } = useQuery({

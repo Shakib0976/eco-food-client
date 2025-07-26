@@ -1,19 +1,36 @@
-import React, { use, useState } from 'react';
+import React, { useContext } from 'react';
 import { AuthContext } from '../../Context/AuthContext';
 import { useNavigate } from 'react-router';
 import { FiHome } from 'react-icons/fi';
+import { useQuery } from '@tanstack/react-query';
+import Loader from '../Loader/Loader';
+import simpleAxios from '../../Hooks/simpleAxios';
 
 const UserProfile = () => {
 
-    const { user } = use(AuthContext);
+    const { user } = useContext(AuthContext)
     const navigate = useNavigate();
 
+    const axiosSecure = simpleAxios()
 
-    const [stats, setStats] = useState({
-        totalActions: 12,
-        thisMonth: 3,
-        successRate: 95,
-    });
+
+
+    const { data: profileUser, isLoading } = useQuery({
+        queryKey: ['profileUser'],
+        queryFn: async () => {
+            const res = await axiosSecure.get(`user/${user?.email}`)
+            return res.data
+        }
+    })
+
+
+    if (isLoading) {
+        return <Loader></Loader>
+    }
+
+    console.log(profileUser);
+
+
     return (
         <div className="p-8 min-h-screen bg-[#FAFAF8] text-[#1A1A1A]">
             <div className='flex items-center space-x-2'>
@@ -27,7 +44,7 @@ const UserProfile = () => {
             </div>
 
 
-            <p className="mt-2 text-lg">Welcome back, {user?.displayName || "User"}!</p>
+            <p className="mt-2 text-lg">Welcome back, {profileUser?.displayName || "User"}!</p>
 
             <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
                 {/* Profile */}
@@ -39,9 +56,9 @@ const UserProfile = () => {
                             className="w-20 h-20 rounded-full mb-2"
                         /> : <div className="text-3xl mb-4">👤</div>
                     }
-                    <p className="text-lg font-semibold">{user?.displayName || "John Doe"}</p>
+                    <p className="text-lg font-semibold">{profileUser?.name || "John Doe"}</p>
                     <p className="text-sm text-gray-500">{user?.email || "user@demo.com"}</p>
-                    <span className="mt-2 text-xs bg-gray-200 px-3 py-1 rounded-full">User</span>
+                    <span className="mt-2 text-xs bg-gray-200 px-3 py-1 rounded-full">{profileUser?.role}</span>
                 </div>
 
                 {/* Quick Actions */}
@@ -63,7 +80,7 @@ const UserProfile = () => {
             {/* Stats Section */}
             <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="bg-white shadow-md rounded-2xl p-6">
-                    <p className="text-3xl font-bold">{stats.totalActions}</p>
+                    <p className="text-3xl font-bold">totla action</p>
                     <p className="text-gray-500 mt-2">Total Actions</p>
                 </div>
                 <div className="bg-white shadow-md rounded-2xl p-6">
@@ -76,7 +93,7 @@ const UserProfile = () => {
                 </div>
 
                 <div className="bg-white shadow-md rounded-2xl p-6">
-                    <p className="text-3xl font-bold text-green-600">{stats.successRate}%</p>
+                    <p className="text-3xl font-bold text-green-600">success rate%</p>
                     <p className="text-gray-500 mt-2">Success Rate</p>
                 </div>
             </div>

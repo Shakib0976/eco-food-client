@@ -2,7 +2,7 @@ import React, { use } from 'react';
 import { AuthContext } from '../../Context/AuthContext';
 import Swal from 'sweetalert2';
 import imageCompression from 'browser-image-compression';
-import simpleAxios from '../../Hooks/simpleAxios';
+import useAxios from '../../Hooks/useAxios';
 
 const AddDonation = () => {
 
@@ -11,7 +11,7 @@ const AddDonation = () => {
 
 
     const { user } = use(AuthContext);
-    const axiosSecure = simpleAxios();
+    const axiosSecure = useAxios();
 
 
     const handleSubmit = async (e) => {

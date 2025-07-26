@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router'; // For navigating to donation details
 import { FaMapMarkerAlt, FaUtensils, FaUserTie, FaBoxOpen, FaTruckLoading, FaCheckCircle, FaHourglassHalf, FaEye } from 'react-icons/fa'; // Icons for clarity
 import simpleAxios from '../../Hooks/simpleAxios';
@@ -7,6 +7,8 @@ import { Loader } from 'lucide-react';
 
 const FoodDonationCard = () => {
 
+
+    const [searchLocation, setSearchLocation] = useState('');
 
     const axiosSecure = simpleAxios();
 
@@ -23,6 +25,10 @@ const FoodDonationCard = () => {
         return <Loader></Loader>
     }
 
+    const filteredDonations = donations.filter((donation) =>
+        donation?.location?.toLowerCase().includes(searchLocation.toLowerCase())
+    );
+
 
 
 
@@ -32,8 +38,16 @@ const FoodDonationCard = () => {
                 <h1 className='  text-2xl md:text-5xl mb-2 font-semibold'>All Donations</h1>
                 <p className='text-xl text-gray-500'>Browse verified food donations from restaurants in your area</p>
             </div>
+
+            <input
+                type="text"
+                placeholder="Search by location (e.g., city)"
+                value={searchLocation}
+                onChange={(e) => setSearchLocation(e.target.value)}
+                className="input mb-5 input-bordered w-full md:w-1/2 lg:w-1/3"
+            />
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5">
-                {donations.map((donation) => (
+                {filteredDonations.map((donation) => (
                     <div
                         key={donation?._id}
                         className="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden border border-gray-200 flex flex-col"
