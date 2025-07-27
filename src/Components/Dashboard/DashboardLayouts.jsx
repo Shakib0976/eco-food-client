@@ -102,6 +102,11 @@ const DashboardLayouts = () => {
                                 </NavLink>
                             </li>
                             <li>
+                                <NavLink to="/dashboard/donation-stats">
+                                    📊 Donation Statistics
+                                </NavLink>
+                            </li>
+                            <li>
                                 <NavLink to="/dashboard/add-donation">
                                     <FaPlusCircle className="inline-block mr-2" />
                                     Add Donation

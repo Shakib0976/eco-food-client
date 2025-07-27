@@ -9,6 +9,7 @@ const FoodDonationCard = () => {
 
 
     const [searchLocation, setSearchLocation] = useState('');
+    const [sortOrder, setSortOrder] = useState('asc');
 
     const axiosSecure = simpleAxios();
 
@@ -25,11 +26,17 @@ const FoodDonationCard = () => {
         return <Loader></Loader>
     }
 
-    const filteredDonations = donations.filter((donation) =>
-        donation?.location?.toLowerCase().includes(searchLocation.toLowerCase())
-    );
+    const filteredDonations = donations
+        .filter((donation) =>
+            donation?.location?.toLowerCase().includes(searchLocation.toLowerCase())
+        )
+        .sort((a, b) => {
+            const qtyA = Number(a?.quantity) || 0;
+            const qtyB = Number(b?.quantity) || 0;
 
-
+            return sortOrder === 'asc' ? qtyA - qtyB : qtyB - qtyA;
+        });
+    console.log('Sorted Donations:', filteredDonations.map(d => d.quantity));
 
 
     return (
@@ -46,6 +53,14 @@ const FoodDonationCard = () => {
                 onChange={(e) => setSearchLocation(e.target.value)}
                 className="input mb-5 input-bordered w-full md:w-1/2 lg:w-1/3"
             />
+            <select
+                value={sortOrder}
+                onChange={(e) => setSortOrder(e.target.value)}
+                className="select select-bordered w-full md:w-48"
+            >
+                <option value="asc">Sort by Quantity: Low to High</option>
+                <option value="desc">Sort by Quantity: High to Low</option>
+            </select>
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5">
                 {filteredDonations.map((donation) => (
                     <div

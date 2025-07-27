@@ -39,7 +39,7 @@ const JoinUs = () => {
 
             createUser(email, password)
                 .then(async (result) => {
-                    // localStorage.setItem('devtalksToken', result?.user?.accessToken);
+                    localStorage.setItem('ecoUser', result?.user?.accessToken);
                     toast.success('Successfully Signin')
                     navigate(locations?.state || '/', {
                         state: { toastMessage: 'Login successful!' }

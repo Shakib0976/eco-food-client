@@ -37,7 +37,7 @@ const Navbar = () => {
                 signOut(auth)
                     .then(() => {
                         console.log("User signed out");
-                        localStorage.removeItem('devtalksToken');
+                        localStorage.removeItem('ecoUser');
                         setUser(null); // Clear user from context
                     })
                     .catch((error) => {

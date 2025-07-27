@@ -30,7 +30,7 @@ const locations = useLocation();
             .then((result) => {
                 const user = (result.user);
                 setUser(user)
-                localStorage.setItem('devtalksToken', result?.user?.accessToken);
+                localStorage.setItem('ecoUser', result?.user?.accessToken);
                 toast.success('Successfully Login')
                 navigate(locations?.state || '/', {
                     state: { toastMessage: 'Login successful!' }

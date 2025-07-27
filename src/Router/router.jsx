@@ -31,6 +31,7 @@ import AdminRoute from "./AdminRoute";
 import UserRoute from "./UserRoute"
 import ResturentRoute from "./ResturentRoute";
 import CherityRoute from "./CherityRoute";
+import DonationStats from "../Pages/AddDonation/DonationState";
 
 
 
@@ -155,6 +156,10 @@ export const router = createBrowserRouter([
             {
                 path: 'feature-donations',
                 element: <AdminRoute><FeatureDonation></FeatureDonation></AdminRoute>
+            },
+            {
+                path: 'donation-stats',
+                element: <ResturentRoute><DonationStats></DonationStats></ResturentRoute>
             }
 
 

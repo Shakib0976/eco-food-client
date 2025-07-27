@@ -16,7 +16,7 @@ const SocialLogin = () => {
         signInWithGoogle()
             .then(async (result) => {
                 toast.success('Successfully login')
-                // localStorage.setItem('devtalksToken', result?.user?.accessToken);
+                localStorage.setItem('ecoUser', result?.user?.accessToken);
                 navigate(locations?.state || '/', {
                     state: { toastMessage: 'Login successful!' }
                 });
