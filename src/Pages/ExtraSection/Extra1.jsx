@@ -43,8 +43,8 @@ const Extra1 = () => {
     const offset = CIRCUMFERENCE - (progress / 100) * CIRCUMFERENCE;
     return (
         <div>
-            <div className="min-h-screen bg-[#8c7fef10] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 font-inter">
-                <div className="overflow-hidden lg:flex lg:items-center lg:justify-between p-8 md:p-12 lg:p-16">
+            <div className="min-h-screen w-11/12 mx-auto my-20 rounded-2xl bg-[#8c7fef20] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 font-inter">
+                <div className="overflow-hidden lg:flex lg:items-center lg:justify-between p-8 md:p-10 lg:p-16">
                     {/* Left Side */}
                     <div
                         className="lg:w-1/2 flex justify-center items-center relative mb-8 lg:mb-0"
