@@ -37,17 +37,18 @@ const AllCherityReq = () => {
     }
     console.log(allChrityReq);
     return (
-        <div className="my-12 w-11/12 mx-auto">
-            <h2 className="text-3xl font-bold text-center text-primary mb-10">
+        <div className="my-20 w-11/12 mx-auto">
+            <h2 className="text-3xl md:text-5xl font-bold text-center  mb-3">
                 Latest Charity Requests
             </h2>
+            <p className='text-center text-gray-600  mb-20'>Local charities and community organizations actively seeking food donations to <br /> support their vital community programs.</p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {latestRequests.map((req, index) => (
                     <div
                         key={req._id}
                         data-aos={index % 2 === 0 ? 'fade-up-left' : 'fade-up-right'}
-                        className="bg-gradient-to-br from-[#f9fafb] to-[#f1f5f9] border border-gray-200 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 p-6"
+                        className="bg-[#2bcee510] border border-gray-200 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 p-6"
                     >
                         <div className="flex flex-col items-center text-center">
                             <img
