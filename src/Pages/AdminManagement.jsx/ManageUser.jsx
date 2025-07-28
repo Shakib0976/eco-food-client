@@ -22,23 +22,48 @@ const ManageUser = () => {
 
 
     const handleMakeRole = async (userId, newRole) => {
+        const confirm = await Swal.fire({
+            title: `Change role to ${newRole}?`,
+            text: `Are you sure you want to make this user a ${newRole}?`,
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: `Yes, make ${newRole}`,
+            cancelButtonText: 'Cancel',
+        });
+
+        if (!confirm.isConfirmed) return;
+
         try {
             const res = await axiosSecure.put(`/users/role/${userId}`, { role: newRole });
             if (res.data.success) {
-                toast.success(`User role changed to ${newRole}`);
-                refetch(); // Refresh user list to reflect changes
+                await Swal.fire({
+                    icon: 'success',
+                    title: `User is now a ${newRole}`,
+                    timer: 1800,
+                    showConfirmButton: false,
+                });
+                refetch();
             } else {
-                toast.error(res.data.message || 'Failed to update role');
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Failed',
+                    text: res.data.message || `Failed to assign role.`,
+                });
             }
         } catch (error) {
-            toast.error('Something went wrong!');
             console.error(error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Something went wrong!',
+                text: 'Could not change user role.',
+            });
         }
     };
 
+
     //   delete user
     const handleDeleteUser = async (userId) => {
-        
+
         const result = await Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",

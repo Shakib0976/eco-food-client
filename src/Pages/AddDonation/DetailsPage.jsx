@@ -204,6 +204,7 @@ const DetailsPage = ({ donateData }) => {
             reviewerEmail: user.email,
             createdAt: new Date().toISOString()
         }
+        console.log(review)
         const res = await axiosSecure.post('review', review);
         console.log('review', res.data);
         document.getElementById('review_modal').close();
@@ -411,7 +412,7 @@ const DetailsPage = ({ donateData }) => {
                     <div className="space-y-3">
                         {
                             allReview.length == 0 ? <div> No Review available</div> : allReview.map(review => <div className="bg-white shadow p-3 rounded-md">
-                                <p><strong>Name:</strong> {review.name}</p>
+                                <p><strong>Name:</strong> {review.reviewerName}</p>
                                 <p>
                                     <strong>Rating:</strong>{' '}
                                     <span className="text-yellow-500">

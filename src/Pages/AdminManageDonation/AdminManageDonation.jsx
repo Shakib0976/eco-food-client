@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Loader from '../Loader/Loader';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import useAxios from '../../Hooks/useAxios';
+import Swal from 'sweetalert2';
 
 const AdminManageDonation = () => {
     const axiosSecure = useAxios();
@@ -49,13 +50,52 @@ const AdminManageDonation = () => {
     };
 
 
-    const handleVerify = (id) => {
-        updateStatus(id, "Verified");
+    const handleVerify = async (id) => {
+        const confirm = await Swal.fire({
+            title: 'Verify Donation?',
+            text: 'Are you sure you want to verify this donation?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, verify it!',
+            cancelButtonText: 'Cancel',
+        });
+
+        if (confirm.isConfirmed) {
+            await updateStatus(id, "Verified");
+            Swal.fire({
+                icon: 'success',
+                title: 'Verified!',
+                text: 'Donation has been verified.',
+                timer: 2000,
+                showConfirmButton: false,
+            });
+        }
     };
 
-    const handleReject = (id) => {
-        updateStatus(id, "Rejected");
+
+    const handleReject = async (id) => {
+        const confirm = await Swal.fire({
+            title: 'Reject Donation?',
+            text: 'Are you sure you want to reject this donation?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            confirmButtonText: 'Yes, reject it!',
+            cancelButtonText: 'Cancel',
+        });
+
+        if (confirm.isConfirmed) {
+            await updateStatus(id, "Rejected");
+            Swal.fire({
+                icon: 'info',
+                title: 'Rejected',
+                text: 'Donation has been rejected.',
+                timer: 2000,
+                showConfirmButton: false,
+            });
+        }
     };
+
 
     return (
         <div className="overflow-x-auto mt-6 m-6">
@@ -72,7 +112,7 @@ const AdminManageDonation = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {donations.map((donation , index) => (
+                    {donations.map((donation, index) => (
                         <tr key={`${donation._id}-${index}`} className="hover:bg-gray-50">
                             <td className="px-4 py-2 border">{donation.title}</td>
                             <td className="px-4 py-2 border">{donation.foodType}</td>

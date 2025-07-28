@@ -38,7 +38,8 @@ const FeatureDonation = () => {
                 {donations.map((donation) => (
                     <div
                         key={donation?._id}
-                        className="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden border border-gray-200 flex flex-col"
+                        className="bg-white rounded-xl shadow hover:shadow-2xl hover:-translate-y-1 hover:scale-[1.02] transition duration-300 ease-in-out overflow-hidden border border-gray-200 flex flex-col"
+
                     >
                         {/* Image and Status Badge */}
                         <div className="relative h-44 w-full">

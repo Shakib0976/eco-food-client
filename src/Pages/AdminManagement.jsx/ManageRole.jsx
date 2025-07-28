@@ -2,6 +2,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import useAxios from '../../Hooks/useAxios';
 import Loader from '../Loader/Loader';
+import Swal from 'sweetalert2';
 
 const ManageRole = () => {
     const axiosSecure = useAxios();
@@ -52,12 +53,50 @@ const ManageRole = () => {
     }
 
 
-    const handleVerify = (id, email) => {
-        updateStatus(id, email, "Approved");
+    const handleVerify = async (id, email) => {
+        const result = await Swal.fire({
+            title: 'Approve Request?',
+            text: "Are you sure you want to approve this charity request?",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, approve it!',
+            cancelButtonText: 'Cancel',
+        });
+
+        if (result.isConfirmed) {
+            await updateStatus(id, email, "Approved");
+            Swal.fire({
+                icon: 'success',
+                title: 'Approved!',
+                text: 'The request has been approved.',
+                timer: 2000,
+                showConfirmButton: false
+            });
+        }
     };
 
-    const handleReject = (id) => {
-        updateStatus(id, "Rejected");
+
+    const handleReject = async (id) => {
+        const result = await Swal.fire({
+            title: 'Reject Request?',
+            text: "Are you sure you want to reject this charity request?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            confirmButtonText: 'Yes, reject it!',
+            cancelButtonText: 'Cancel',
+        });
+
+        if (result.isConfirmed) {
+            await updateStatus(id, "", "Rejected");
+            Swal.fire({
+                icon: 'info',
+                title: 'Rejected',
+                text: 'The request has been rejected.',
+                timer: 2000,
+                showConfirmButton: false
+            });
+        }
     };
 
 

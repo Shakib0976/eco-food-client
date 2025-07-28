@@ -41,31 +41,46 @@ const FoodDonationCard = () => {
 
     return (
         <div className='my-10 w-11/12 mx-auto'>
-            <div className='mb-5'>
-                <h1 className='  text-2xl md:text-5xl mb-2 font-semibold'>All Donations</h1>
-                <p className='text-xl text-gray-500'>Browse verified food donations from restaurants in your area</p>
-            </div>
+            <div className="container mx-auto px-4 py-8">
+                <div className="text-center mb-10">
+                    <h1 className="text-4xl md:text-6xl font-extrabold text-gray-800 mb-3 leading-tight">Nourish Your Community</h1>
+                    <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">Discover and secure verified food donations from local restaurants and businesses.</p>
+                </div>
 
-            <input
-                type="text"
-                placeholder="Search by location (e.g., city)"
-                value={searchLocation}
-                onChange={(e) => setSearchLocation(e.target.value)}
-                className="input mb-5 input-bordered w-full md:w-1/2 lg:w-1/3"
-            />
-            <select
-                value={sortOrder}
-                onChange={(e) => setSortOrder(e.target.value)}
-                className="select select-bordered w-full md:w-48"
-            >
-                <option value="asc">Sort by Quantity: Low to High</option>
-                <option value="desc">Sort by Quantity: High to Low</option>
-            </select>
+                <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-8">
+                    {/* Search Input */}
+                    <div className="relative w-full md:w-1/2 lg:w-2/5">
+                        <input
+                            type="text"
+                            placeholder="Search donations by city..."
+                            value={searchLocation}
+                            onChange={(e) => setSearchLocation(e.target.value)}
+                            className="input input-bordered input-lg w-full pl-12 pr-4 rounded-full shadow-md focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all duration-200"
+                        />
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </div>
+
+                    {/* Sort Dropdown */}
+                    <select
+                        value={sortOrder}
+                        onChange={(e) => setSortOrder(e.target.value)}
+                        className="select bg-2 select-bordered select-lg w-full md:w-56 rounded-full shadow-md text-gray-700 focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all duration-200"
+                    >
+                        <option value="asc">Quantity: Low to High</option>
+                        <option value="desc">Quantity: High to Low</option>
+                    </select>
+                </div>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5">
                 {filteredDonations.map((donation) => (
                     <div
                         key={donation?._id}
-                        className="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden border border-gray-200 flex flex-col"
+                        className="bg-white  rounded-xl shadow hover:shadow-2xl hover:-translate-y-1 hover:scale-[1.02] transition duration-300 ease-in-out overflow-hidden border border-gray-200 flex flex-col"
+
+
+
                     >
                         {/* Image and Status Badge */}
                         <div className="relative h-44 w-full">

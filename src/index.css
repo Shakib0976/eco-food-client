@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Red%20Rose:700|Red%20Rose:400');
 @import "tailwindcss";
 @plugin "daisyui";
+
 
 /* 
 .molle-regular-italic {
@@ -202,7 +204,7 @@
 
 
 
-@import url('https://fonts.googleapis.com/css?family=Red%20Rose:700|Red%20Rose:400');
+
 
 body {
     font-family: 'Red Rose';
@@ -235,16 +237,16 @@ body {
     background-color: #f1f2fd;
 }
 
-.active{
-     background-color: #15803d;
-     color: white;
-    
+.active {
+    background-color: #15803d;
+    color: white;
+
 }
 
 .bg-2:hover {
-  filter: drop-shadow(1px 1px 20px #15803d);
+    filter: drop-shadow(1px 1px 20px #15803d);
 }
 
 .bg-3:hover {
-  filter: drop-shadow(1px 1px 10px #f97316);
+    filter: drop-shadow(1px 1px 10px #f97316);
 }
