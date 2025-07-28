@@ -53,7 +53,7 @@ const Donation = () => {
                                 rest: {},
                                 hover: {},
                             }}
-                            className="relative rounded-xl h-100 overflow-hidden shadow-lg cursor-pointer group max-w-sm"
+                            className="relative rounded-xl h-90 overflow-hidden shadow-lg cursor-pointer group max-w-sm"
                         >
                             {/* Image */}
                             <img

@@ -3,6 +3,7 @@ import useAxios from '../../Hooks/useAxios';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import Loader from '../Loader/Loader';
 import { AuthContext } from '../../Context/AuthContext';
+import Swal from 'sweetalert2';
 
 const RequestDonation = () => {
     const [disabledButton, setDisabledButton] = useState(null);
@@ -53,12 +54,67 @@ const RequestDonation = () => {
     };
 
     const handleVerify = (id, donId, charityName, charityEmail) => {
-        updateStatus(id, donId, "Accepted", charityName, charityEmail);
+        Swal.fire({
+            title: 'Accept this request?',
+            text: "You are about to assign this donation.",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, accept it!',
+            cancelButtonText: 'Cancel'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                updateStatus(id, donId, "Accepted", charityName, charityEmail)
+                    .then(() => {
+                        Swal.fire(
+                            'Accepted!',
+                            'The request has been accepted and assigned.',
+                            'success'
+                        );
+                    })
+                    .catch((error) => {
+                        Swal.fire(
+                            'Error!',
+                            'Something went wrong while accepting the request.',
+                            'error'
+                        );
+                        console.error(error);
+                    });
+            }
+        });
     };
 
+
     const handleReject = (id) => {
-        updateStatus(id, "Rejected");
+        Swal.fire({
+            title: 'Reject this request?',
+            text: "This action cannot be undone.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#aaa',
+            confirmButtonText: 'Yes, reject it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                updateStatus(id, null, "Rejected")
+                    .then(() => {
+                        Swal.fire(
+                            'Rejected!',
+                            'The request has been rejected.',
+                            'success'
+                        );
+                    })
+                    .catch((error) => {
+                        Swal.fire(
+                            'Error!',
+                            'Something went wrong while rejecting the request.',
+                            'error'
+                        );
+                        console.error(error);
+                    });
+            }
+        });
     };
+
 
     console.log(requestData);
     return (
