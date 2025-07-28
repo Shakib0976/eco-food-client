@@ -1,14 +1,14 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import React, { use } from 'react';
-import simpleAxios from '../../Hooks/simpleAxios';
 import { AuthContext } from '../../Context/AuthContext';
 import Loader from '../Loader/Loader';
 import { FaBoxes, FaCheckCircle, FaClock, FaMapMarkerAlt, FaUtensils } from 'react-icons/fa';
 import Swal from 'sweetalert2';
+import useAxios from '../../Hooks/useAxios';
 
 const MyPickup = () => {
 
-    const axiosSecure = simpleAxios();
+    const axiosSecure = useAxios();
     const queryClient = useQueryClient();
 
     const { user } = use(AuthContext);

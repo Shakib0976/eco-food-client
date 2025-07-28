@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from "framer-motion";
 import { ArrowRight, Clock } from "lucide-react";
 import simpleAxios from '../../../../Hooks/simpleAxios';
@@ -6,6 +6,8 @@ import { useQuery } from '@tanstack/react-query';
 import Loader from '../../../Loader/Loader';
 import { FaEye } from 'react-icons/fa';
 import { Link } from 'react-router';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const Donation = () => {
 
@@ -18,6 +20,12 @@ const Donation = () => {
             return res.data;
         },
     });
+    useEffect(() => {
+        AOS.init({
+            duration: 1000,
+            once: false, // if true, animation happens only once
+        });
+    }, []);
 
     console.log(donations);
 
@@ -26,13 +34,17 @@ const Donation = () => {
     }
     return (
         <div className='w-11/12 mx-auto'>
-            <div className='text-center items-center my-20'>
-                <h1 className='md:text-5xl text-3xl mb-4 molle-regular-italic  font-semibold'>Featured Donations</h1>
+            <div className='text-center items-center mb-5 md:mb-10 mt-30'>
+                <h1 className='md:text-5xl text-4xl molle-regular-italic  font-semibold'>Featured Donations</h1>
                 <p className='text-sm molle-regular-italic'>Fresh food donations available right now. Join our <br />community to help reduce waste and feed those in need.</p>
             </div>
             <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 space-x-6 space-y-4'>
                 {
-                    donations.map(donation => <div className='mb-10 mt-5'>
+                    donations.map(donation => <div
+                        data-aos="fade-up"
+                        
+
+                        className='mb-10 mt-5'>
                         <motion.div
                             whileHover="hover"
                             initial="rest"
@@ -97,7 +109,7 @@ const Donation = () => {
                                     <div className="mt-10 mb-5">
                                         <Link to={`/donations/${donation?._id}`}>
                                             <p className="text-orange-500 font-semibold flex items-center gap-1 cursor-pointer hover:underline">
-                                               View  Details <ArrowRight className="w-4 h-4" />
+                                                View  Details <ArrowRight className="w-4 h-4" />
                                             </p></Link>
                                     </div>
                                 </div>

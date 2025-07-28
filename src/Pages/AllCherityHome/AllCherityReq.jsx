@@ -2,6 +2,9 @@ import React from 'react';
 import simpleAxios from '../../Hooks/simpleAxios';
 import { useQuery } from '@tanstack/react-query';
 import { Loader } from 'lucide-react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { useEffect } from 'react';
 
 const AllCherityReq = () => {
 
@@ -14,6 +17,10 @@ const AllCherityReq = () => {
             return res.data
         }
     })
+
+    useEffect(() => {
+        AOS.init({ duration: 1000 });
+    }, []);
 
 
     const latestRequests = Array.isArray(allChrityReq)
@@ -36,9 +43,10 @@ const AllCherityReq = () => {
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {latestRequests.map((req) => (
+                {latestRequests.map((req, index) => (
                     <div
                         key={req._id}
+                        data-aos={index % 2 === 0 ? 'fade-up-left' : 'fade-up-right'}
                         className="bg-gradient-to-br from-[#f9fafb] to-[#f1f5f9] border border-gray-200 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 p-6"
                     >
                         <div className="flex flex-col items-center text-center">
@@ -59,6 +67,7 @@ const AllCherityReq = () => {
                         </div>
                     </div>
                 ))}
+
             </div>
         </div>
 

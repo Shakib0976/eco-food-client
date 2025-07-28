@@ -4,11 +4,11 @@ import { AuthContext } from '../Context/AuthContext';
 import { useNavigate } from 'react-router';
 
 const axiosSecure = axios.create({
-    baseURL: `http://localhost:5000`
+    baseURL: `https://local-food-server-iota.vercel.app`
 });
 
 const useAxios = () => {
-    const { user, logOut } =use(AuthContext);
+    const { user, logOut } = use(AuthContext);
     const navigate = useNavigate();
 
     axiosSecure.interceptors.request.use(config => {

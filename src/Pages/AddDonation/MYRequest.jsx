@@ -5,6 +5,7 @@ import { AuthContext } from '../../Context/AuthContext';
 import Loader from '../Loader/Loader';
 import { FaTimesCircle } from 'react-icons/fa';
 import Swal from 'sweetalert2';
+import { motion } from 'framer-motion';
 
 const MYRequest = () => {
     const axiosSecure = useAxios();
@@ -46,6 +47,36 @@ const MYRequest = () => {
             }
         }
 
+    }
+
+
+    if (!reqData || reqData.length === 0) {
+        return (
+            <div className='w-11/12 mx-auto my-20 flex justify-center items-center h-[60vh]'>
+                <motion.div
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, type: "spring", stiffness: 100 }}
+                    className="flex flex-col items-center justify-center p-8 bg-white rounded-lg shadow-xl text-center"
+                >
+                    <motion.svg
+                        className="w-24 h-24 text-gray-400 mb-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                        initial={{ scale: 0.5, rotate: -30 }}
+                        animate={{ scale: 1, rotate: 0 }}
+                        transition={{ duration: 0.6, type: "spring", stiffness: 150, delay: 0.2 }}
+                    >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </motion.svg>
+                    <h2 className="text-3xl font-bold text-gray-700 mb-2">No Requests Found!</h2>
+                    <p className="text-lg text-gray-500">It looks like you haven't made any pickup requests yet.</p>
+                    <p className="text-md text-gray-500 mt-1">Start by requesting a food pickup to see it here.</p>
+                </motion.div>
+            </div>
+        );
     }
 
     console.log(reqData);

@@ -68,7 +68,7 @@ const Navbar = () => {
     );
 
     return (
-        <div className="sticky top-0 z-50 bg-white/70 backdrop-blur-md shadow-sm px-4 md:px-10">
+        <div className="sticky top-0 z-50 bg-white/10 backdrop-blur-md shadow-sm px-4 md:px-10">
             <div className="navbar justify-between">
                 {/* Left: Logo */}
                 <div className="navbar-start flex items-center">
@@ -95,7 +95,7 @@ const Navbar = () => {
                         {
                             user ? <div className="flex items-center justify-between ">
                                 {/* User image */}
-                                <div className="w-8 h-8 rounded-full object-cover mr-2">
+                                <div className="w-8 h-8 rounded-full overflow-hidden mr-2">
                                     {user?.photoURL ? (
                                         <img className='rounded-full ' src={user?.photoURL} alt="User" />
                                     ) : (

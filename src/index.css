@@ -1,12 +1,12 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
-
+/* 
 .molle-regular-italic {
     font-family: "Molle", cursive;
     font-weight: 400;
     font-style: italic;
-}
+} */
 
 
 @keyframes static-noise {
@@ -194,4 +194,57 @@
         /* emerald-600 */
         0 0 30px rgba(16, 185, 129, 0.6),
         0 0 45px rgba(16, 185, 129, 0.4);
+}
+
+
+
+
+
+
+
+@import url('https://fonts.googleapis.com/css?family=Red%20Rose:700|Red%20Rose:400');
+
+body {
+    font-family: 'Red Rose';
+    font-weight: 400;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: 'Red Rose';
+    font-weight: 700;
+}
+
+html {
+    font-size: 100%;
+}
+
+/* 16px */
+
+
+
+small {
+    font-size: 0.750rem;
+    /* 12px */
+}
+
+body {
+    background-color: #f1f2fd;
+}
+
+.active{
+     background-color: #15803d;
+     color: white;
+    
+}
+
+.bg-2:hover {
+  filter: drop-shadow(1px 1px 20px #15803d);
+}
+
+.bg-3:hover {
+  filter: drop-shadow(1px 1px 10px #f97316);
 }

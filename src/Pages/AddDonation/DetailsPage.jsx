@@ -115,7 +115,7 @@ const DetailsPage = ({ donateData }) => {
             Swal.fire({
                 icon: 'error',
                 title: 'Failed!',
-                text: 'Could not save to favorites. Already data saved',
+                text: 'Something wrong',
             });
             console.log(error);
         }
