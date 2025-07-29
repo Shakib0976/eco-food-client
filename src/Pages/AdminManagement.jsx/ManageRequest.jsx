@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 
 const ManageRequest = () => {
     const axiosSecure = useAxios();
-    const { data: requestData = [], isLoading   , refetch} = useQuery({
+    const { data = [], isLoading   , refetch} = useQuery({
         queryKey: ['pickupReq'],
         queryFn: async () => {
             const res = await axiosSecure.get(`/pickupReq`);
@@ -15,10 +15,11 @@ const ManageRequest = () => {
 
             console.log("Fetched requestData:", data);
             return Array.isArray(data) ? data : [];
-        }
+        },
+         initialData: [],
     })
 
-    console.log('all req is', requestData);
+    console.log('all req is', data);
 
     if (isLoading) {
         return <Loader></Loader>
@@ -67,7 +68,7 @@ const ManageRequest = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {requestData.map((req) => (
+                        {data.map((req) => (
                             <tr key={req._id} className="border-b hover:bg-gray-50 transition">
                                 <td className="p-3 font-medium text-gray-800">{req.title}</td>
                                 <td className="p-3">{req.charityName}</td>
@@ -84,7 +85,7 @@ const ManageRequest = () => {
                             </tr>
                         ))}
 
-                        {Array.isArray(requestData) && requestData.length === 0 && (
+                        {Array.isArray(data) && data.length === 0 && (
                             <tr>
                                 <td colSpan="5" className="p-4 text-center text-gray-500">
                                     No donation requests found.

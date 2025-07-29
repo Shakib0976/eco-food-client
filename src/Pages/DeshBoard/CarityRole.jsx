@@ -28,14 +28,13 @@ const CarityRole = () => {
     //         });
     // }, [user.email]);
 
-
     const axiosSecure = useAxios()
-
     const handlePayment = (e) => {
         e.preventDefault()
         const name = user?.displayName;
         const email = user?.email;
-     
+        const image = user?.photoURL;
+
 
 
         if (requests.length > 0) {
@@ -50,9 +49,10 @@ const CarityRole = () => {
         navigate(`/dashboard/payment/${user?.email}`)
 
 
-    
+
         const charityData = {
             name,
+            image,
             email,
             orgName,
             mission,
@@ -86,7 +86,7 @@ const CarityRole = () => {
 
 
 
-    
+
     return (
         <div className="lg:w-8/12 md:10/12 mt-10 mx-auto p-6 border rounded shadow">
             <h2 className="text-2xl font-bold mb-4">Request Charity Role</h2>

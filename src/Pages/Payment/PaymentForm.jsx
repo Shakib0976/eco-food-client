@@ -34,7 +34,7 @@ const PaymentForm = () => {
 
 
 
-    const amount = paymentInfo.cost || 0;
+    const amount = paymentInfo.cost || 25;
     const reqId = paymentInfo._id;
     const amountInCents = amount * 100;
 
@@ -93,6 +93,7 @@ const PaymentForm = () => {
                     OrgName,
                     Mission,
                     amount,
+                    image: user?.photoURL,
                     email: user.email,
                     status: 'Pending',
                     transactionId,

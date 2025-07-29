@@ -35,7 +35,7 @@ const AllCherityReq = () => {
     if (isLoading) {
         return <Loader></Loader>
     }
-    console.log(allChrityReq);
+    console.log(latestRequests);
     return (
         <div className="my-20 w-11/12 mx-auto">
             <h2 className="text-3xl md:text-5xl font-bold text-center  mb-3">
@@ -52,18 +52,18 @@ const AllCherityReq = () => {
                     >
                         <div className="flex flex-col items-center text-center">
                             <img
-                                src="https://i.ibb.co/vXjM0PG/charity-placeholder.jpg"
+                                src={req?.image}
                                 alt="Charity Logo"
                                 className="w-20 h-20 rounded-full object-cover shadow-md border-4 border-white mb-4"
                             />
-                            <h3 className="text-xl font-semibold text-gray-800 mb-1">{req.name}</h3>
-                            <p className="text-sm text-gray-500 italic mb-3">{req.orgName}</p>
-                            <p className="text-sm text-gray-700 px-2 mb-4">{req.mission}</p>
+                            <h3 className="text-xl font-semibold text-gray-800 mb-1">{req?.name}</h3>
+                            <p className="text-sm text-gray-500 italic mb-3">{req?.orgName}</p>
+                            <p className="text-sm text-gray-700 px-2 mb-4">{req?.mission}</p>
                         </div>
                         <div className="text-right text-xs text-gray-400">
                             Requested on:{" "}
                             <span className="font-medium text-gray-500">
-                                {new Date(req.createdAt).toLocaleDateString()}
+                                {new Date(req?.createdAt).toLocaleDateString()}
                             </span>
                         </div>
                     </div>

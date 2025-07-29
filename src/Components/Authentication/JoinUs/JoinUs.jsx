@@ -61,6 +61,7 @@ const JoinUs = () => {
                     updateUser({ displayName: name, photoURL: photo })
                         .then(() => {
                             setUser({ ...user, displayName: name, photoURL: photo });
+                            window.location.reload()
 
                         })
                         .catch((error) => {

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../Context/AuthContext';
-import { useNavigate } from 'react-router';
+import { Link} from 'react-router';
 import { FiHome } from 'react-icons/fi';
 import { useQuery } from '@tanstack/react-query';
 import Loader from '../Loader/Loader';
@@ -9,7 +9,6 @@ import simpleAxios from '../../Hooks/simpleAxios';
 const UserProfile = () => {
 
     const { user } = useContext(AuthContext)
-    const navigate = useNavigate();
 
     const axiosSecure = simpleAxios()
 
@@ -35,16 +34,12 @@ const UserProfile = () => {
         <div className="p-8 min-h-screen bg-[#FAFAF8] text-[#1A1A1A]">
             <div className='flex items-center space-x-2'>
 
-                <FiHome
-                    onClick={() => navigate('/')}
-                    className="text-3xl lg:hidden text-green-600 cursor-pointer hover:text-green-700 transition"
-                    title="Go to Home"
-                />
+
                 <h1 className="text-4xl font-bold">Dashboard</h1>
             </div>
 
 
-            <p className="mt-2 text-lg">Welcome back, {profileUser?.displayName || "User"}!</p>
+            <p className="mt-2 text-lg">Welcome back, {profileUser?.role || "User"}!</p>
 
             <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
                 {/* Profile */}
@@ -65,10 +60,13 @@ const UserProfile = () => {
                 <div className="col-span-2 bg-white shadow-md rounded-2xl p-6">
                     <h2 className="text-xl font-semibold mb-4">Quick Actions</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <button className="w-full p-6 bg-[#FBFAF9] rounded-xl border hover:shadow transition">
-                            <div className="text-2xl mb-2">♡</div>
-                            <p className="font-medium">My Favorites</p>
-                        </button>
+                        <Link to={'/'} className="w-full p-6 flex flex-col justify-center items-center bg-[#FBFAF9] rounded-xl border hover:shadow transition">
+                            <FiHome
+                              size={25}
+                            />
+                            <p className="font-medium">Go Home</p>
+
+                        </Link>
                         <button className="w-full p-6 bg-[#FBFAF9] rounded-xl border hover:shadow transition">
                             <div className="text-2xl mb-2">📋</div>
                             <p className="font-medium">Charity Role Request Pending : 0 </p>

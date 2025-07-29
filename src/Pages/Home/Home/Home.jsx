@@ -7,7 +7,7 @@ import Extra2 from '../../ExtraSection/Extra2';
 
 const Home = () => {
     return (
-        <div>
+        <div className='overflow-x-hidden'>
             <Banner></Banner>
             <Donation></Donation>
             <AllCherityReq></AllCherityReq>

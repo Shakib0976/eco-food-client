@@ -38,7 +38,7 @@ const Navbar = () => {
                     .then(() => {
                         console.log("User signed out");
                         localStorage.removeItem('ecoUser');
-                        setUser(null); // Clear user from context
+                        setUser(null); 
                     })
                     .catch((error) => {
                         console.log("Logout error:", error.message);
@@ -68,7 +68,7 @@ const Navbar = () => {
     );
 
     return (
-        <div className="sticky top-0 z-50 bg-white/10 backdrop-blur-md shadow-sm px-4 md:px-10">
+        <div className="sticky top-0  z-50 bg-white/10 backdrop-blur-md shadow-sm px-4 md:px-10">
             <div className="navbar justify-between">
                 {/* Left: Logo */}
                 <div className="navbar-start flex items-center">

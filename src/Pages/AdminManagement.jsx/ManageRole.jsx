@@ -1,42 +1,63 @@
-import { useQuery, useQueryClient } from '@tanstack/react-query';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useAxios from '../../Hooks/useAxios';
 import Loader from '../Loader/Loader';
 import Swal from 'sweetalert2';
 
 const ManageRole = () => {
     const axiosSecure = useAxios();
-    const queryClient = useQueryClient();
 
 
 
-    const { data: allCherityReq, isLoading } = useQuery({
-        queryKey: ['charity_request'],
-        queryFn: async () => {
-            const res = await axiosSecure.get('charity_request')
-            return res.data
-        }
 
-    })
 
+    const [allCherityReq, setAllCherityReq] = useState([]);
     const [donationList, setDonationList] = useState(allCherityReq);
+    const [loading, setLoading] = useState(true);
 
+
+    useEffect(() => {
+        const hasVisited = sessionStorage.getItem('manageRoleVisited');
+        if (!hasVisited) {
+            sessionStorage.setItem('manageRoleVisited', 'true');
+            window.location.reload();
+        }
+    }, []);
+
+
+    useEffect(() => {
+        const fetchAllCherity = async () => {
+            try {
+                const allCherity = await axiosSecure.get('charity_request');
+                setAllCherityReq(allCherity.data);
+                setDonationList(allCherity.data);
+            } catch (error) {
+                console.error("Failed to fetch charity requests", error);
+            } finally {
+                setLoading(false); // 👈 stop loading when done
+            }
+        };
+
+        fetchAllCherity();
+    }, [axiosSecure]);
+
+
+
+
+    console.log(donationList);
     const updateStatus = async (id, email, newStatus) => {
         try {
             const result = await axiosSecure.patch(`adminRole/${id}`, {
                 status: newStatus,
             });
-            console.log(result);
 
-            const updated = donationList.map((donation) =>
-                donation._id === id ? result.data : donation
-            );
             if (result.data.modifiedCount > 0) {
-                setDonationList(newStatus);
                 await axiosSecure.put(`/users/emailRole/${email}`, { role: 'charity' });
-                queryClient.invalidateQueries(['donations']);
+
+                // ✅ Refetch updated data
+                const refreshed = await axiosSecure.get('charity_request');
+                setAllCherityReq(refreshed.data);
+                setDonationList(refreshed.data);
             }
-            setDonationList(updated);
         } catch (err) {
             console.error("Failed to update status:", err);
         }
@@ -47,8 +68,9 @@ const ManageRole = () => {
 
 
 
+
     console.log('charitypayment', allCherityReq);
-    if (isLoading) {
+    if (loading) {
         return <Loader></Loader>
     }
 
@@ -118,7 +140,7 @@ const ManageRole = () => {
                     </tr>
                 </thead>
                 <tbody className="bg-white">
-                    {allCherityReq.map((req) => (
+                    {allCherityReq?.map((req) => (
                         <tr key={req._id} className="border-b hover:bg-gray-50">
                             <td className="px-4 py-2">{req.UserName}</td>
                             <td className="px-4 py-2">{req.Useremail}</td>
