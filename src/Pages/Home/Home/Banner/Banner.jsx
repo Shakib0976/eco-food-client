@@ -54,7 +54,7 @@ const Banner = () => {
                     </motion.p>
 
                     <motion.h1
-                        className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4"
+                        className="text-3xl sm:text-3xl md:text-4xl lg:text-6xl font-bold leading-tight mb-4"
                         initial={{ opacity: 0, y: 40 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.1 }}
@@ -94,8 +94,8 @@ const Banner = () => {
                     </motion.div>
 
                     {/* Buttons */}
-                    <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4">
-                        <button className="bg-orange-500 hover:bg-orange-600 px-6 py-3 text-white font-semibold rounded-full transition duration-150 hover:scale-105 active:scale-95">
+                    <div className="flex flex-col lg:flex-row items-center justify-center md:justify-start gap-4">
+                        <button className="bg-orange-500  hover:bg-orange-600 px-6 py-3 text-white font-semibold rounded-full transition duration-150 hover:scale-105 active:scale-95">
                             <span className="mr-2">&rarr;</span> Get Started Today
                         </button>
                         <button className="bg-white text-black hover:bg-green-700 hover:text-white px-6 py-3 font-semibold rounded-full transition duration-150 hover:scale-105 active:scale-95">
@@ -105,7 +105,7 @@ const Banner = () => {
                 </div>
 
                 {/* Right Image Section */}
-                <div className="w-full md:w-1/2 relative hidden md:flex justify-center items-center">
+                <div className="w-full md:w-1/2 relative ml-5 hidden md:flex justify-center items-center">
                 
                    <div>
                      <div className="relative w-105 h-105  rounded-2xl overflow-hidden shadow-xl">

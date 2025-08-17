@@ -38,7 +38,7 @@ const Donation = () => {
                 <h1 className='md:text-5xl text-4xl molle-regular-italic  font-semibold'>Featured Donations</h1>
                 <p className='text-sm molle-regular-italic'>Fresh food donations available right now. Join our <br />community to help reduce waste and feed those in need.</p>
             </div>
-            <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 space-x-6 space-y-4'>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 space-x-6 space-y-4'>
                 {
                     donations.map(donation => <div
                         data-aos="fade-up"
