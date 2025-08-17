@@ -12,7 +12,7 @@ const About = () => {
                     transition={{ duration: 0.8 }}
                     className="text-4xl md:text-5xl font-bold mb-4"
                 >
-                    About Our Food Donation Platform
+                    About Our EcoFood Platform
                 </motion.h1>
                 <motion.p
                     initial={{ opacity: 0, y: 40 }}
