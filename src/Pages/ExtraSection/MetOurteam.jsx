@@ -15,7 +15,7 @@ const MetOurteam = () => {
                 >
                     Meet Our Team
                 </motion.h2>
-                <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-10 max-w-7xl mx-auto">
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 max-w-7xl mx-auto">
                     {[
                         { name: "Alice Johnson", role: "Founder", img: "https://i.pravatar.cc/200?img=32" },
                         { name: "Mark Davis", role: "Operations Lead", img: "https://i.pravatar.cc/200?img=12" },

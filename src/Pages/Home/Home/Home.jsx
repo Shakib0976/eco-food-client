@@ -5,6 +5,8 @@ import AllCherityReq from '../../AllCherityHome/AllCherityReq';
 import Extra1 from '../../ExtraSection/Extra1';
 import Extra2 from '../../ExtraSection/Extra2';
 import MetOurteam from '../../ExtraSection/MetOurteam';
+import ExtraSection from '../../ExtraSection/ExtraSection';
+import Newsletter from '../../ExtraSection/Newsletter';
 
 const Home = () => {
     return (
@@ -13,8 +15,10 @@ const Home = () => {
             <Donation></Donation>
             <AllCherityReq></AllCherityReq>
             <Extra1></Extra1>
-            <Extra2></Extra2>
             <MetOurteam></MetOurteam>
+            <Extra2></Extra2>
+            <ExtraSection></ExtraSection>
+            <Newsletter></Newsletter>
         </div>
     );
 };

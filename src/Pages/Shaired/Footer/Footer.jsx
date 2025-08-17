@@ -59,25 +59,7 @@ const Footer = () => {
                 </div>
             </div>
 
-            {/* Bottom Section - Stay Updated */}
-            <div className="container mx-auto pt-8 text-center">
-                <h4 className="text-xl font-semibold text-white mb-4">Stay Updated</h4>
-                <p className="text-sm text-gray-300 mb-6">
-                    Get notifications about new donations and community impact stories.
-                </p>
-                <div className="flex justify-center">
-                    <div className="join w-full max-w-sm">
-                        <input
-                            type="email"
-                            placeholder="Enter your email"
-                            className="input input-bordered input-success join-item w-full bg-gray-700 text-white border-gray-600 focus:outline-none focus:border-light-green"
-                        />
-                        <button className="btn bg-nourish-orange text-white bg-orange-600 border-none join-item">
-                            Subscribe
-                        </button>
-                    </div>
-                </div>
-            </div>
+        
             <div className='border border-gray-500 my-5'></div>
             <div className='text-center md:flex justify-between text-gray-300'>
                 <h1 className='mb-2'>© 2025 TaskForce</h1>

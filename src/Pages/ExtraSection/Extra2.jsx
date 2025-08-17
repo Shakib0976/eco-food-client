@@ -14,7 +14,7 @@ const Extra2 = () => {
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
                     <CountetCard
                         icon={<span>💚</span>}
                         target={15234}
@@ -66,7 +66,7 @@ const Extra2 = () => {
                 </div>
 
                 {/* Extra success stories below (optional) */}
-                <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
                     <CountetCard
                         icon={<span>🍽️</span>}
                         target={37}
