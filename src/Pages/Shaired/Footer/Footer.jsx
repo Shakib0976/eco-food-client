@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { use } from 'react';
 import { FaHeart, FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 import { MdLocationOn, MdPhone, MdEmail } from 'react-icons/md';
 import { Link, NavLink } from 'react-router';
 import Logo from '../Logo/Logo';
+import { AuthContext } from '../../../Context/AuthContext';
 
 const Footer = () => {
+    const {user} = use(AuthContext);
     return (
         <div className="bg-[#0F1E19] text-white py-12 px-4 md:px-8">
             <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 pb-8 border-b border-gray-700">
@@ -31,11 +33,18 @@ const Footer = () => {
                 <div>
                     <h4 className="text-xl font-semibold text-white mb-4">Quick Links</h4>
                     <ul className="space-y-2">
-                        <li><a href="#" className="text-gray-300 hover:text-white text-sm">About Us</a></li>
-                        <li><a href="#" className="text-gray-300 hover:text-white text-sm">All Donations</a></li>
-                        <li><a href="#" className="text-gray-300 hover:text-white text-sm">How It Works</a></li>
-                        <li><a href="#" className="text-gray-300 hover:text-white text-sm">Our Impact</a></li>
-                        <li><a href="#" className="text-gray-300 hover:text-white text-sm">Partners</a></li>
+                        <li><NavLink  to="/">Home</NavLink></li>
+                        <li><NavLink to="/allDonations">All Donations</NavLink></li>
+
+                        <li><NavLink to="/about">About</NavLink></li>
+                        {
+                            user && <li><NavLink to="/dashBoard">Dashboard</NavLink></li>
+
+                        }
+                        {
+                            user &&
+                            <li><NavLink  to="/contact">Contact</NavLink></li>
+                        }
                     </ul>
                 </div>
 
@@ -59,7 +68,7 @@ const Footer = () => {
                 </div>
             </div>
 
-        
+
             <div className='border border-gray-500 my-5'></div>
             <div className='text-center md:flex justify-between text-gray-300'>
                 <h1 className='mb-2'>© 2025 TaskForce</h1>

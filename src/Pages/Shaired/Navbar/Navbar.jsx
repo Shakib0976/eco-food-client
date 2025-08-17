@@ -38,7 +38,7 @@ const Navbar = () => {
                     .then(() => {
                         console.log("User signed out");
                         localStorage.removeItem('ecoUser');
-                        setUser(null); 
+                        setUser(null);
                     })
                     .catch((error) => {
                         console.log("Logout error:", error.message);
@@ -63,10 +63,18 @@ const Navbar = () => {
         <>
             <li><NavLink onClick={closeMenu} to="/">Home</NavLink></li>
             <li><NavLink onClick={closeMenu} to="/allDonations">All Donations</NavLink></li>
+
+            <li><NavLink onClick={closeMenu} to="/about">About</NavLink></li>
             {
                 user && <li><NavLink onClick={closeMenu} to="/dashBoard">Dashboard</NavLink></li>
+
             }
-            <li><NavLink onClick={closeMenu} to="/about">About</NavLink></li>
+            {
+                user &&
+                <li><NavLink onClick={closeMenu} to="/contact">Contact</NavLink></li>
+            }
+
+
         </>
     );
 

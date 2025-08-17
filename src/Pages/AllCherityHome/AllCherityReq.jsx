@@ -48,7 +48,7 @@ const AllCherityReq = () => {
                     <div
                         key={req._id}
                         data-aos={index % 2 === 0 ? 'fade-up-left' : 'fade-up-right'}
-                        className="bg-[#2bcee510] border border-gray-200 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 p-6"
+                        className=" border border-gray-200 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 p-6"
                     >
                         <div className="flex flex-col items-center text-center">
                             <img

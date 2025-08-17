@@ -33,6 +33,7 @@ import ResturentRoute from "./ResturentRoute";
 import CherityRoute from "./CherityRoute";
 import DonationStats from "../Pages/AddDonation/DonationState";
 import About from "../Pages/About/About";
+import Contact from "../Pages/ExtraSection/Contact";
 
 
 
@@ -75,6 +76,10 @@ export const router = createBrowserRouter([
             {
                 path:'about',
                 Component: About
+            },
+            {
+                path:'contact',
+                Component: Contact
             }
 
 

@@ -43,7 +43,7 @@ const ExtraSection = () => {
 
     return (
         <div>
-            <section className="py-20 bg-gray-50 px-6 md:px-20 text-center">
+            <section className="py-20  px-6 md:px-20 text-center">
                 <motion.h2
                     initial={{ opacity: 0, y: -20 }}
                     whileInView={{ opacity: 1, y: 0 }}

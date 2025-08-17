@@ -15,7 +15,7 @@ const Newsletter = () => {
     };
     return (
         <div>
-            <div className="bg-gray-50">
+            <div className="">
                
                 {/* Newsletter Subscription Section */}
                 <section className="bg-green-50 py-20 px-6 md:px-20 text-center rounded-t-3xl">
