@@ -64,12 +64,13 @@ const Navbar = () => {
             <li><NavLink onClick={closeMenu} to="/">Home</NavLink></li>
             <li><NavLink onClick={closeMenu} to="/allDonations">All Donations</NavLink></li>
             <li><NavLink onClick={closeMenu} to="/dashBoard">Dashboard</NavLink></li>
+             <li><NavLink onClick={closeMenu} to="/about">About</NavLink></li>
         </>
     );
 
     return (
-        <div className="sticky top-0  z-50 bg-white/10 backdrop-blur-md shadow-sm px-4 md:px-10">
-            <div className="navbar justify-between">
+        <div className="sticky top-0  z-50 bg-white/10 backdrop-blur-md shadow-sm mx-auto px-4 md:px-10">
+            <div className="navbar w-11/12 mx-auto ">
                 {/* Left: Logo */}
                 <div className="navbar-start flex items-center">
                     <div className="btn btn-ghost p-0">
@@ -90,8 +91,8 @@ const Navbar = () => {
                 </div>
 
                 {/* Right: Auth Buttons */}
-                <div className="navbar-end  space-x-3">
-                    <div className=' space-x-3 hidden md:flex'>
+                <div className="navbar-end">
+                    <div className=' space-x-3 hidden  md:flex'>
                         {
                             user ? <div className="flex items-center justify-between ">
                                 {/* User image */}
@@ -116,7 +117,7 @@ const Navbar = () => {
                                 >
                                     <IoIosLogOut size={25} />
                                 </button>
-                            </div> : <div className='navbar-end space-x-3 hidden md:flex'>
+                            </div> : <div className='space-x-3 hidden md:flex'>
                                 <NavLink
                                     className="btn bg-gray-200 hover:bg-blue-600 hover:text-white font-bold rounded-2xl px-5"
                                     to="/login"
@@ -134,7 +135,7 @@ const Navbar = () => {
                     </div>
 
                     {/* Mobile Hamburger */}
-                    <div className="md:hidden">
+                    <div className="lg:hidden">
                         <button
                             onClick={handleMenuToggle}
                             className="btn btn-ghost p-2"
@@ -154,7 +155,7 @@ const Navbar = () => {
 
             {/* Mobile Dropdown */}
             {menuOpen && (
-                <div className="md:hidden mt-2">
+                <div className="lg:hidden mt-2">
                     <ul className="menu bg-base-400  hover:bg-blue-100  rounded-box shadow p-4 space-y-2">
                         {navItems}
                     </ul>

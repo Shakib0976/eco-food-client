@@ -32,6 +32,7 @@ import UserRoute from "./UserRoute"
 import ResturentRoute from "./ResturentRoute";
 import CherityRoute from "./CherityRoute";
 import DonationStats from "../Pages/AddDonation/DonationState";
+import About from "../Pages/About/About";
 
 
 
@@ -70,6 +71,10 @@ export const router = createBrowserRouter([
             {
                 path: 'donations/:id',
                 element: <PrivateRoutes><DonationDetail></DonationDetail></PrivateRoutes>
+            },
+            {
+                path:'about',
+                Component: About
             }
 
 
