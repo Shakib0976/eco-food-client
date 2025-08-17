@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import CountUp from 'react-countup';
 import { FaPlay } from 'react-icons/fa';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router';
 
 const Banner = () => {
 
@@ -95,12 +96,12 @@ const Banner = () => {
 
                     {/* Buttons */}
                     <div className="flex flex-col lg:flex-row items-center justify-center md:justify-start gap-4">
-                        <button className="bg-orange-500  hover:bg-orange-600 px-6 py-3 text-white font-semibold rounded-full transition duration-150 hover:scale-105 active:scale-95">
+                        <Link to="/allDonations" className="bg-orange-500  hover:bg-orange-600 px-6 py-3 text-white font-semibold rounded-full transition duration-150 hover:scale-105 active:scale-95">
                             <span className="mr-2">&rarr;</span> Get Started Today
-                        </button>
-                        <button className="bg-white text-black hover:bg-green-700 hover:text-white px-6 py-3 font-semibold rounded-full transition duration-150 hover:scale-105 active:scale-95">
+                        </Link>
+                        <Link to="/allDonations" className="bg-white text-black hover:bg-green-700 hover:text-white px-6 py-3 font-semibold rounded-full transition duration-150 hover:scale-105 active:scale-95">
                             Learn More
-                        </button>
+                        </Link>
                     </div>
                 </div>
 

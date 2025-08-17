@@ -66,7 +66,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'allDonations',
-                element: <PrivateRoutes><AllDonation></AllDonation> </PrivateRoutes>
+                element: <AllDonation></AllDonation>
             },
             {
                 path: 'donations/:id',

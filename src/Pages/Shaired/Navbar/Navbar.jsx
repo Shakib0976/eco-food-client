@@ -63,8 +63,10 @@ const Navbar = () => {
         <>
             <li><NavLink onClick={closeMenu} to="/">Home</NavLink></li>
             <li><NavLink onClick={closeMenu} to="/allDonations">All Donations</NavLink></li>
-            <li><NavLink onClick={closeMenu} to="/dashBoard">Dashboard</NavLink></li>
-             <li><NavLink onClick={closeMenu} to="/about">About</NavLink></li>
+            {
+                user && <li><NavLink onClick={closeMenu} to="/dashBoard">Dashboard</NavLink></li>
+            }
+            <li><NavLink onClick={closeMenu} to="/about">About</NavLink></li>
         </>
     );
 
