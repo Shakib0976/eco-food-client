@@ -103,7 +103,7 @@ const CarityRole = () => {
                         name='name'
                         defaultValue={user?.displayName}
                         readOnly
-                        className="input input-bordered w-full"
+                        className="input dark:bg-gray-800 input-bordered w-full"
                     />
                 </div>
 
@@ -114,7 +114,7 @@ const CarityRole = () => {
                         name='email'
                         defaultValue={user?.email}
                         readOnly
-                        className="input input-bordered w-full"
+                        className="input  dark:bg-gray-800 input-bordered w-full"
                     />
                 </div>
 
@@ -125,7 +125,7 @@ const CarityRole = () => {
                         value={orgName}
                         onChange={(e) => setOrgName(e.target.value)}
                         required
-                        className="input input-bordered w-full"
+                        className="input   dark:bg-gray-800 input-bordered w-full"
                     />
                 </div>
 
@@ -135,7 +135,7 @@ const CarityRole = () => {
                         value={mission}
                         onChange={(e) => setMission(e.target.value)}
                         required
-                        className="textarea textarea-bordered w-full"
+                        className="textarea   dark:bg-gray-800 textarea-bordered w-full"
                     ></textarea>
                 </div>
 

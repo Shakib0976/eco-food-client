@@ -28,7 +28,7 @@ const MetOurteam = () => {
                             whileInView={{ y: 0, opacity: 1 }}
                             transition={{ duration: 0.6, delay: i * 0.2 }}
                             viewport={{ once: true }}
-                            className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-2xl transition"
+                            className="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-6 hover:shadow-2xl transition"
                         >
                             <img
                                 src={member.img}
@@ -36,7 +36,7 @@ const MetOurteam = () => {
                                 className="w-28 h-28 rounded-full mx-auto mb-4 border-4 border-green-500"
                             />
                             <h3 className="text-xl font-semibold">{member.name}</h3>
-                            <p className="text-gray-600">{member.role}</p>
+                            <p className="dark:text-gray-400 text-gray-600">{member.role}</p>
                         </motion.div>
                     ))}
                 </div>

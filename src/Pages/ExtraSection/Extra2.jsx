@@ -6,10 +6,10 @@ const Extra2 = () => {
         <div>
             <section className="bg-[#2bcee520] py-16 px-4 sm:px-8 lg:px-20">
                 <div className="text-center mb-12 max-w-2xl mx-auto">
-                    <h2 className="text-4xl font-extrabold text-gray-900 mb-4">
+                    <h2 className="text-4xl font-extrabold dark:text-gray-200 text-gray-900 mb-4">
                         Our Community success stories
                     </h2>
-                    <p className="text-gray-600 text-lg">
+                    <p className="text-gray-600 dark:text-gray-400 text-lg">
                         Together, we're creating measurable change in our community. Every donation makes a difference in reducing waste and feeding families.
                     </p>
                 </div>

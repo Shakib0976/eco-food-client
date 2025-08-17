@@ -27,7 +27,7 @@ const Contact = () => {
     };
     return (
         <div>
-            <div className="bg-gray-50 min-h-screen">
+            <div className="bg-gray-50 dark:bg-gray-900 min-h-screen">
                 <div className=' h-50 md:h-60 lg:h-90' >
                     <iframe
                         title="Our Location"
@@ -41,11 +41,11 @@ const Contact = () => {
                     ></iframe>
                 </div>
 
-                <div className="max-w-7xl px-10 mx-auto grid md:grid-cols-2 gap-10 my-10 ">
+                <div className="max-w-7xl px-10 mx-auto grid md:grid-cols-2 gap-10 pb-10 mt-10 ">
                     {/* Contact Info */}
                     <div className="space-y-6">
                         <h2 className="text-2xl md:text-4xl lg:text-6xl font-semibold text-green-700">Get in Touch</h2>
-                        <p className="text-gray-700">
+                        <p className="text-gray-700 dark:text-gray-400">
                             We'd love to hear from you! Whether you have questions, suggestions, or want to volunteer, fill out the form and we'll get back to you.
                         </p>
 
@@ -65,10 +65,10 @@ const Contact = () => {
                     {/* Contact Form */}
                     <form
                         onSubmit={handleSubmit}
-                        className="bg-white p-8 max-w-3xl rounded-2xl shadow-lg space-y-6"
+                        className="bg-white dark:bg-gray-800 p-8 max-w-3xl rounded-2xl shadow-lg space-y-6"
                     >
                         <div>
-                            <label className="block text-gray-700 font-medium mb-2">Name</label>
+                            <label className="block dark:text-gray-200 text-gray-700 font-medium mb-2">Name</label>
                             <input
                                 type="text"
                                 name="name"
@@ -81,7 +81,7 @@ const Contact = () => {
                         </div>
 
                         <div>
-                            <label className="block text-gray-700 font-medium mb-2">Email</label>
+                            <label className="block dark:text-gray-200 text-gray-700 font-medium mb-2">Email</label>
                             <input
                                 type="email"
                                 name="email"
@@ -94,7 +94,7 @@ const Contact = () => {
                         </div>
 
                         <div>
-                            <label className="block text-gray-700 font-medium mb-2">Message</label>
+                            <label className="block dark:text-gray-200 text-gray-700 font-medium mb-2">Message</label>
                             <textarea
                                 name="message"
                                 value={formData.message}

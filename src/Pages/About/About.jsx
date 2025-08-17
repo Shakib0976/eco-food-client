@@ -3,9 +3,9 @@ import { motion } from "framer-motion";
 
 const About = () => {
     return (
-        <div className="bg-gray-50 text-gray-800">
+        <div className="bg-gray-50 dark:bg-black text-gray-800">
             {/* Hero Section */}
-            <section className="relative bg-[#8c7fef20] text-black py-20 px-6 text-center overflow-hidden">
+            <section className="relative bg-[#8c7fef20] dark:text-gray-200 text-black py-20 px-6 text-center overflow-hidden">
                 <motion.h1
                     initial={{ opacity: 0, y: -40 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -18,7 +18,7 @@ const About = () => {
                     initial={{ opacity: 0, y: 40 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1, delay: 0.3 }}
-                    className="max-w-2xl text-gray-500 mx-auto text-lg"
+                    className="max-w-2xl dark:text-gray-400 text-gray-500 mx-auto text-lg"
                 >
                     We connect restaurants, charities, and people in need to reduce food waste
                     and ensure no one goes hungry.
@@ -26,8 +26,8 @@ const About = () => {
             </section>
 
             {/* How It Works Section */}
-            <section className="py-16 bg-white px-6 md:px-20">
-                <h2 className="text-3xl font-bold text-center mb-12">How It Works</h2>
+            <section className="py-16 dark:bg-black bg-white px-6 md:px-20">
+                <h2 className="text-3xl dark:text-gray-200 font-bold text-center mb-12">How It Works</h2>
                 <div className="grid md:grid-cols-3 gap-10 max-w-5xl mx-auto">
                     {[
                         { step: "1. Donate", desc: "Restaurants and individuals list surplus food through our platform." },
@@ -40,10 +40,10 @@ const About = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: i * 0.2 }}
                             viewport={{ once: true }}
-                            className="bg-gray-100 rounded-2xl p-8 shadow hover:shadow-lg transition"
+                            className="bg-gray-100 dark:bg-gray-900 rounded-2xl p-8 shadow hover:shadow-lg transition"
                         >
-                            <h3 className="text-xl font-semibold mb-3">{item.step}</h3>
-                            <p className="text-gray-600">{item.desc}</p>
+                            <h3 className="text-xl dark:text-gray-200 font-semibold mb-3">{item.step}</h3>
+                            <p className="dark:text-gray-400 text-gray-600">{item.desc}</p>
                         </motion.div>
                     ))}
                 </div>
@@ -56,7 +56,7 @@ const About = () => {
                     whileInView={{ scale: 1, opacity: 1 }}
                     transition={{ duration: 0.6 }}
                     viewport={{ once: true }}
-                    className="text-3xl font-bold mb-6"
+                    className="text-3xl dark:text-gray-200 font-bold mb-6"
                 >
                     Our Mission
                 </motion.h2>
@@ -65,7 +65,7 @@ const About = () => {
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
                     viewport={{ once: true }}
-                    className="max-w-3xl mx-auto text-lg text-gray-600"
+                    className="max-w-3xl dark:text-gray-400 mx-auto text-lg text-gray-600"
                 >
                     Our mission is to create a community where surplus food is shared
                     instead of wasted. By bridging the gap between donors and receivers,
@@ -76,13 +76,13 @@ const About = () => {
 
 
             {/* Impact Section */}
-            <section className="py-16 px-6 md:px-20 text-center bg-green-50">
+            <section className="py-16 px-6 md:px-20 text-center dark:bg-gray-900 bg-green-50">
                 <motion.h2
                     initial={{ opacity: 0, y: -30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.7 }}
                     viewport={{ once: true }}
-                    className="text-3xl font-bold mb-6"
+                    className="text-3xl dark:text-gray-200 font-bold mb-6"
                 >
                     Our Impact
                 </motion.h2>
@@ -91,7 +91,7 @@ const About = () => {
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.7, delay: 0.2 }}
                     viewport={{ once: true }}
-                    className="max-w-3xl mx-auto text-lg text-gray-600 mb-10"
+                    className="max-w-3xl dark:text-gray-400 mx-auto text-lg text-gray-600 mb-10"
                 >
                     Together, we have saved thousands of meals from going to waste and
                     provided food to countless families in need. Every contribution counts!
@@ -108,10 +108,10 @@ const About = () => {
                             whileInView={{ scale: 1, opacity: 1 }}
                             transition={{ duration: 0.6, delay: i * 0.2 }}
                             viewport={{ once: true }}
-                            className="bg-white rounded-2xl shadow p-6"
+                            className="bg-white dark:bg-gray-800 rounded-2xl shadow p-6"
                         >
                             <h3 className="text-2xl font-bold text-green-600">{stat.num}</h3>
-                            <p className="text-gray-600">{stat.label}</p>
+                            <p className=" dark:text-gray-400 text-gray-600">{stat.label}</p>
                         </motion.div>
                     ))}
                 </div>
@@ -124,7 +124,7 @@ const About = () => {
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.7 }}
                     viewport={{ once: true }}
-                    className="text-3xl font-bold mb-12"
+                    className="text-3xl dark:text-gray-200 font-bold mb-12"
                 >
                     Meet Our Team
                 </motion.h2>
@@ -140,15 +140,15 @@ const About = () => {
                             whileInView={{ y: 0, opacity: 1 }}
                             transition={{ duration: 0.6, delay: i * 0.2 }}
                             viewport={{ once: true }}
-                            className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-2xl transition"
+                            className="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-6 hover:shadow-2xl transition"
                         >
                             <img
                                 src={member.img}
                                 alt={member.name}
                                 className="w-28 h-28 rounded-full mx-auto mb-4 border-4 border-green-500"
                             />
-                            <h3 className="text-xl font-semibold">{member.name}</h3>
-                            <p className="text-gray-600">{member.role}</p>
+                            <h3 className="text-xl dark:text-gray-200 font-semibold ">{member.name}</h3>
+                            <p className="text-gray-600 dark:text-gray-400">{member.role}</p>
                         </motion.div>
                     ))}
                 </div>

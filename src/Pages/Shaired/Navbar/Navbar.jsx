@@ -1,4 +1,4 @@
-import React, { use, useState } from 'react';
+import React, { use, useContext, useState } from 'react';
 import { NavLink } from 'react-router';
 import Logo from '../Logo/Logo';
 import { AuthContext } from '../../../Context/AuthContext';
@@ -8,9 +8,11 @@ import { signOut } from 'firebase/auth';
 import { auth } from '../../../Firebase/firebase.config';
 import { GrUserManager } from 'react-icons/gr';
 import { RxAvatar } from 'react-icons/rx';
+import { ThemeContext } from '../../../ThemeContext';
 
 const Navbar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
+    const { theme, toggleTheme } = useContext(ThemeContext);
     const { user, setUser } = use(AuthContext);
     console.log(user);
 
@@ -79,7 +81,7 @@ const Navbar = () => {
     );
 
     return (
-        <div className="sticky top-0  z-50 bg-white/10 backdrop-blur-md shadow-sm mx-auto px-4 md:px-10">
+        <div className="sticky top-0 dark:bg-gray-900 dark:text-white  z-50 bg-white/10 backdrop-blur-md shadow-sm mx-auto px-4 md:px-10">
             <div className="navbar w-11/12 mx-auto ">
                 {/* Left: Logo */}
                 <div className="navbar-start flex items-center">
@@ -95,7 +97,7 @@ const Navbar = () => {
 
                 {/* Center: Desktop Menu */}
                 <div className="navbar-center hidden lg:flex">
-                    <ul className="menu menu-horizontal space-x-4 font-semibold text-lg text-gray-700">
+                    <ul className="menu menu-horizontal  dark:text-gray-300 space-x-4 font-semibold text-lg text-gray-700">
                         {navItems}
                     </ul>
                 </div>
@@ -115,7 +117,7 @@ const Navbar = () => {
                                 </div>
 
                                 {/* User name */}
-                                <span className="text-gray-800  mr-2">
+                                <span className="text-gray-800  dark:text-gray-200 mr-2">
                                     {user?.displayName || "No Name"}
                                 </span>
 
@@ -142,6 +144,12 @@ const Navbar = () => {
                                 </NavLink>
                             </div>
                         }
+                        <button
+                            onClick={toggleTheme}
+                            className="p-2 rounded-full bg-gray-300 dark:bg-gray-800 transition-colors"
+                        >
+                            {theme === "light" ? "🌞" : "🌙"}
+                        </button>
                     </div>
 
                     {/* Mobile Hamburger */}

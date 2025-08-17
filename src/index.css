@@ -11,6 +11,17 @@
 } */
 
 
+
+@custom-variant dark (&:where(.dark, .dark *));
+.dark body {
+  @apply bg-slate-950 text-gray-100;
+}
+
+body {
+  background-color: #E5E7EB; 
+}
+
+
 @keyframes static-noise {
 
     0%,

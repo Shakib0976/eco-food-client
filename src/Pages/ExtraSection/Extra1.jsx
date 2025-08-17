@@ -59,14 +59,14 @@ const Extra1 = () => {
                             className="w-full lg:w-1/2 text-center lg:text-left"
                             data-aos="fade-up-left"
                         >
-                            <p className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">
+                            <p className="text-sm font-semibold dark:text-gray-200 text-gray-600 uppercase tracking-wide mb-2">
                                 OUR IMPACT
                             </p>
-                            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 leading-tight mb-6">
+                            <h2 className="text-3xl dark:text-gray-200 sm:text-4xl lg:text-5xl font-extrabold text-gray-900 leading-tight mb-6">
                                 We Are Here to Support <br className="hidden sm:inline" /> Vulnerable
                                 Communities
                             </h2>
-                            <p className="text-base sm:text-lg text-gray-700 leading-relaxed mb-6">
+                            <p className="text-base sm:text-lg dark:text-gray-400 text-gray-700 leading-relaxed mb-6">
                                 EcoFood is a platform that connects restaurants, grocery stores, and individuals with local charities and communities to donate surplus food. Our mission is to reduce food waste and ensure that no one goes hungry. Together, we can build a more sustainable and compassionate future.
                             </p>
 
@@ -90,7 +90,7 @@ const Extra1 = () => {
                                                 clipRule="evenodd"
                                             />
                                         </svg>
-                                        <span className="text-base">{item}</span>
+                                        <span className="text-base dark:text-gray-400">{item}</span>
                                     </li>
                                 ))}
                             </ul>
@@ -133,7 +133,7 @@ const Extra1 = () => {
                                 {/* Linear Progress */}
                                 <div className="w-full max-w-lg mx-auto sm:mx-0 mt-4 sm:mt-0">
                                     <div className="flex justify-between items-center mb-1">
-                                        <p className="text-base font-medium text-gray-700">
+                                        <p className="text-base font-medium dark:text-gray-400 text-gray-700">
                                             Total Food Donated
                                         </p>
                                         <span className="text-green-600 font-semibold text-sm sm:text-base">

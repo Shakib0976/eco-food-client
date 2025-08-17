@@ -49,7 +49,7 @@ const ExtraSection = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
                     viewport={{ once: true }}
-                    className="text-3xl md:text-4xl font-bold mb-12"
+                    className="text-3xl md:text-4xl dark:text-gray-200 font-bold mb-12"
                 >
                     What People Say
                 </motion.h2>
@@ -63,7 +63,7 @@ const ExtraSection = () => {
                             transition={{ duration: 0.7, delay: i * 0.2 }}
                             viewport={{ once: true }}
                             whileHover={{ scale: 1.05 }}
-                            className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition flex flex-col items-center"
+                            className="bg-white dark:bg-gray-900 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition flex flex-col items-center"
                         >
                             <img
                                 src={review.img}
@@ -80,7 +80,7 @@ const ExtraSection = () => {
                                     />
                                 ))}
                             </div>
-                            <p className="text-gray-600 italic mb-4">“{review.text}”</p>
+                            <p className="text-gray-600 dark:text-gray-200 italic mb-4">“{review.text}”</p>
                             <h3 className="text-lg font-semibold">{review.name}</h3>
                             <p className="text-green-600 text-sm">{review.role}</p>
                         </motion.div>
@@ -96,7 +96,7 @@ const ExtraSection = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
                     viewport={{ once: true }}
-                    className="text-3xl md:text-4xl font-bold mb-16 text-green-800"
+                    className="text-3xl md:text-4xl dark:text-gray-200 font-bold mb-16 text-green-800"
                 >
                     Our Impact in Numbers
                 </motion.h2>
@@ -109,13 +109,13 @@ const ExtraSection = () => {
                             whileInView={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.6, delay: i * 0.2 }}
                             viewport={{ once: true }}
-                            className="bg-white rounded-3xl shadow-lg p-8 flex flex-col items-center justify-center hover:shadow-2xl transform hover:-translate-y-2 transition-all"
+                            className="bg-white dark:bg-gray-900 rounded-3xl shadow-lg p-8 flex flex-col items-center justify-center hover:shadow-2xl transform hover:-translate-y-2 transition-all"
                         >
                             {item.icon}
-                            <h3 className="text-4xl md:text-5xl font-extrabold mb-2 text-green-600">
+                            <h3 className="text-4xl md:text-4xl font-extrabold mb-2 text-green-600">
                                 <CountUp end={item.num} duration={3} separator="," />+
                             </h3>
-                            <p className="text-lg md:text-xl font-medium text-gray-700">{item.label}</p>
+                            <p className="text-lg md:text-xl font-medium dark:text-gray-400 text-gray-700">{item.label}</p>
                         </motion.div>
                     ))}
                 </div>

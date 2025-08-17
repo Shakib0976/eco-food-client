@@ -41,7 +41,7 @@ const Banner = () => {
     }, [images.length]); 
     return (
         <div className="mb-20">
-            <div className="bg-gradient-to-r from-slate-900 py-20 lg:h-screen to-slate-800 text-white px-6  md:px-16 flex flex-col-reverse md:flex-row items-center justify-between gap-10 overflow-hidden">
+            <div className=" bg-slate-900 dark:bg-gradient-to-r  from-slate-900 py-20 lg:h-screen to-slate-950 text-white px-6  md:px-16 flex flex-col-reverse md:flex-row items-center justify-between gap-10 overflow-hidden">
                 {/* Left Content */}
                 <div className="w-full md:w-1/2 z-10">
                     <motion.p

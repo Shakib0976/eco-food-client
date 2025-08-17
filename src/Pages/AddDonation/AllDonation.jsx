@@ -43,13 +43,13 @@ const FoodDonationCard = () => {
         <div className='my-10 w-11/12 mx-auto'>
             <div className="container mx-auto px-4 py-8">
                 <div className="text-center mb-10">
-                    <h1 className="text-4xl md:text-6xl font-extrabold text-gray-800 mb-3 leading-tight">Nourish Your Community</h1>
-                    <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">Discover and secure verified food donations from local restaurants and businesses.</p>
+                    <h1 className="text-4xl md:text-6xl font-extrabold dark:text-gray-200 text-gray-800 mb-3 leading-tight">Nourish Your Community</h1>
+                    <p className="text-lg md:text-xl dark:text-gray-400 text-gray-600 max-w-2xl mx-auto">Discover and secure verified food donations from local restaurants and businesses.</p>
                 </div>
 
                 <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-8">
                     {/* Search Input */}
-                    <div className="relative w-full md:w-1/2 lg:w-2/5">
+                    <div className="relative w-full dark:text-gray-900 md:w-1/2 lg:w-2/5">
                         <input
                             type="text"
                             placeholder="Search donations by city..."
@@ -77,7 +77,7 @@ const FoodDonationCard = () => {
                 {filteredDonations.map((donation) => (
                     <div
                         key={donation?._id}
-                        className="bg-white  rounded-xl shadow hover:shadow-2xl hover:-translate-y-1 hover:scale-[1.02] transition duration-300 ease-in-out overflow-hidden border border-gray-200 flex flex-col"
+                        className="bg-white dark:bg-gray-900 rounded-xl shadow hover:shadow-2xl hover:-translate-y-1 hover:scale-[1.02] transition duration-300 ease-in-out overflow-hidden border border-gray-200 flex flex-col"
 
 
 
@@ -91,12 +91,12 @@ const FoodDonationCard = () => {
                                     className="h-full w-full object-cover"
                                 />
                             ) : (
-                                <div className="flex items-center justify-center h-full bg-gray-100 text-5xl text-gray-400">
+                                <div className="flex items-center justify-center h-full  bg-gray-100 text-5xl text-gray-400">
                                     <FaUtensils />
                                 </div>
                             )}
                             <div
-                                className={`absolute top-2 right-2 px-3 py-1 text-xs font-semibold rounded-full border ${donation?.status === 'Available'
+                                className={`absolute  top-2 right-2 px-3 py-1 text-xs font-semibold rounded-full border ${donation?.status === 'Available'
                                     ? 'bg-green-100 text-green-600 border-green-300'
                                     : donation?.status === 'Claimed'
                                         ? 'bg-yellow-100 text-yellow-600 border-yellow-300'
@@ -110,25 +110,25 @@ const FoodDonationCard = () => {
                         {/* Content */}
                         <div className="p-4 flex flex-col flex-grow">
                             {/* Title */}
-                            <h3 className="text-lg font-semibold text-gray-800 mb-1">
+                            <h3 className="text-lg font-semibold dark:text-gray-200 text-gray-800 mb-1">
                                 {donation?.title || 'No Title'}
                             </h3>
 
                             {/* Category */}
-                            <p className="text-sm text-gray-500 flex items-center mb-1">
+                            <p className="text-sm dark:text-gray-300 text-gray-500 flex items-center mb-1">
                                 <FaBoxOpen className="mr-1 text-xs" /> {donation?.category || 'Food'}
                             </p>
 
                             {/* Restaurant Name & Location */}
-                            <p className="text-sm font-semibold text-gray-800">{donation?.restaurantName}</p>
-                            <p className="text-sm text-gray-500 flex items-center mb-2">
+                            <p className="text-sm dark:text-gray-300 font-semibold text-gray-800">{donation?.restaurantName}</p>
+                            <p className="text-sm dark:text-gray-400 text-gray-500 flex items-center mb-2">
                                 <FaMapMarkerAlt className="mr-1 text-xs" />
                                 {donation?.location}
                             </p>
 
                             {/* Assigned Charity */}
                             {donation?.charityName && (
-                                <p className="text-sm text-gray-600 mb-2">
+                                <p className="text-sm dark:text-gray-400 text-gray-600 mb-2">
                                     <span className="font-medium">Assigned to:</span>{' '}
                                     <span className="font-semibold">{donation?.charityName}</span>
                                 </p>

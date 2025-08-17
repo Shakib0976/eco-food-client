@@ -18,12 +18,12 @@ const Newsletter = () => {
             <div className="">
                
                 {/* Newsletter Subscription Section */}
-                <section className="bg-green-50 py-20 px-6 md:px-20 text-center rounded-t-3xl">
+                <section className="bg-green-50  dark:bg-gray-900 py-20 px-6 md:px-20 text-center rounded-t-3xl">
                     <motion.h2
                         initial={{ opacity: 0, y: -20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
-                        className="text-3xl md:text-4xl font-bold mb-6 text-green-800"
+                        className="text-3xl md:text-4xl font-bold mb-6 dark:text-gray-200 text-green-800"
                     >
                         Subscribe Now
                     </motion.h2>
@@ -31,7 +31,7 @@ const Newsletter = () => {
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         transition={{ delay: 0.3, duration: 0.6 }}
-                        className="text-gray-700 mb-8 max-w-2xl mx-auto"
+                        className="text-gray-700 dark:text-gray-400  mb-8 max-w-2xl mx-auto"
                     >
                         Join our community and stay informed about all the ways you can help reduce food waste and support those in need.
                     </motion.p>

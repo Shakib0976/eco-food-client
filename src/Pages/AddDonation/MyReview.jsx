@@ -57,7 +57,17 @@ const MyReview = () => {
     return (
         <div className='w-11/12 mx-auto my-20'>
             {
-                MyReview.map(review => <div className="bg-white shadow-md rounded-lg p-6 mb-4 border border-gray-200">
+                MyReview.length === 0 ? (
+                <div className="w-full col-span-3 text-center py-20">
+                    <img
+                        src="https://cdn-icons-png.flaticon.com/512/4076/4076549.png"
+                        alt="No favorites"
+                        className="mx-auto w-32 h-32 opacity-70 mb-5"
+                    />
+                    <h2 className="text-2xl font-semibold text-gray-600 mb-2">No Review  Found</h2>
+                    <p className="text-gray-500">You haven't added any Review donations yet.</p>
+                </div>
+            ) :    MyReview.map(review => <div className="bg-white shadow-md rounded-lg p-6 mb-4 border border-gray-200">
                     <div className="flex justify-between items-start mb-3">
                         <div>
                             {/* Donation Title - Assumed to be passed as a prop */}

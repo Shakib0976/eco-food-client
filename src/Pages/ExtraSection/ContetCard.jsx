@@ -33,20 +33,20 @@ const ContetCard = ({ icon, target, suffix, label, sublabel, color }) => {
     return (
         <div
             ref={ref}
-            className="bg-white p-6 rounded-2xl shadow-md flex items-start space-x-4 w-full"
+            className="bg-white dark:bg-gray-900 p-6 rounded-2xl shadow-md flex items-start space-x-4 w-full"
         >
             <div className={`p-3 rounded-xl bg-${color}-100 text-${color}-600 text-xl`}>
                 {icon}
             </div>
             <div>
-                <div className="text-2xl font-bold text-gray-900">
+                <div className="text-2xl font-bold dark:text-gray-200 text-gray-900">
                     {Number.isInteger(target)
                         ? Math.floor(count).toLocaleString()
                         : count.toFixed(1)}{" "}
                     {suffix}
                 </div>
-                <div className="font-medium text-gray-700">{label}</div>
-                <div className="text-sm text-gray-500">{sublabel}</div>
+                <div className="font-medium dark:text-gray-400 text-gray-700">{label}</div>
+                <div className="text-sm dark:text-gray-600 text-gray-500">{sublabel}</div>
             </div>
         </div>
     );

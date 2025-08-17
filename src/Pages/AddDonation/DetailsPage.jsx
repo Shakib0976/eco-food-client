@@ -234,10 +234,10 @@ const DetailsPage = ({ donateData }) => {
             <div className="max-w-5xl mx-auto p-6 space-y-6">
 
                 {/* Donation Info */}
-                <div className="bg-white rounded-2xl shadow-xl p-6 md:p-8 space-y-4 border border-gray-100 transform hover:scale-[1.01] transition-transform duration-300 ease-in-out">
+                <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-xl p-6 md:p-8 space-y-4 border border-gray-100 transform hover:scale-[1.01] transition-transform duration-300 ease-in-out">
                     {/* Donation Title - If you have one, add it here for better context */}
                     {donation.title && (
-                        <h2 className="text-3xl font-extrabold text-gray-900 mb-4 pb-2 border-b-2 border-gray-100">
+                        <h2 className="text-3xl font-extrabold dark:text-gray-200 text-gray-900 mb-4 pb-2 border-b-2 border-gray-100">
                             {donation.title}
                         </h2>
                     )}
@@ -247,67 +247,67 @@ const DetailsPage = ({ donateData }) => {
 
                         {/* Description */}
                         <div className="flex flex-col">
-                            <div className="flex items-center text-gray-600 mb-1">
+                            <div className="flex items-center dark:text-gray-200 text-gray-600 mb-1">
                                 <FaInfoCircle className="w-5 h-5 mr-2 text-blue-500" />
                                 <span className="font-semibold text-lg">Description:</span>
                             </div>
-                            <p className="text-gray-800 ml-7">Food Type : {donation.foodType}</p>
+                            <p className="text-gray-800 dark:text-gray-400 ml-7">Food Type : {donation.foodType}</p>
                         </div>
 
                         {/* Food Type */}
                         <div className="flex flex-col">
-                            <div className="flex items-center text-gray-600 mb-1">
+                            <div className="flex items-center dark:text-gray-200 text-gray-600 mb-1">
                                 <FaUtensils className="w-5 h-5 mr-2 text-orange-500" />
-                                <span className="font-semibold text-lg">Food Type:</span>
+                                <span className="font-semibold  text-lg">Food Type:</span>
                             </div>
-                            <p className="text-gray-800 ml-7">{donation.foodType}</p>
+                            <p className="text-gray-800 dark:text-gray-400 ml-7">{donation.foodType}</p>
                         </div>
 
                         {/* Quantity */}
                         <div className="flex flex-col">
-                            <div className="flex items-center text-gray-600 mb-1">
+                            <div className="flex items-center dark:text-gray-200 text-gray-600 mb-1">
                                 <FaBoxOpen className="w-5 h-5 mr-2 text-teal-500" />
                                 <span className="font-semibold text-lg">Quantity:</span>
                             </div>
-                            <p className="text-gray-800 ml-7">{donation.quantity}</p>
+                            <p className="text-gray-800 dark:text-gray-400 ml-7">{donation.quantity}</p>
                         </div>
 
 
                         {/* Restaurant */}
                         <div className="flex flex-col">
-                            <div className="flex items-center text-gray-600 mb-1">
+                            <div className="flex items-center dark:text-gray-200 text-gray-600 mb-1">
                                 <FaBuilding className="w-5 h-5 mr-2 text-red-500" />
                                 <span className="font-semibold text-lg">Restaurant:</span>
                             </div>
-                            <p className="text-gray-800 ml-7">{donation.restaurantName}</p>
+                            <p className="text-gray-800 dark:text-gray-400 ml-7">{donation.restaurantName}</p>
                         </div>
 
                         {/* Location */}
                         <div className="flex flex-col">
-                            <div className="flex items-center text-gray-600 mb-1">
+                            <div className="flex items-center dark:text-gray-200 text-gray-600 mb-1">
                                 <FaMapMarkerAlt className="w-5 h-5 mr-2 text-green-500" />
                                 <span className="font-semibold text-lg">Location:</span>
                             </div>
-                            <p className="text-gray-800 ml-7">{donation.location}</p>
+                            <p className="text-gray-800 dark:text-gray-400 ml-7">{donation.location}</p>
                         </div>
 
                         {/* Pickup Time Window */}
                         <div className="flex flex-col">
-                            <div className="flex items-center text-gray-600 mb-1">
+                            <div className="flex items-center dark:text-gray-200 text-gray-600 mb-1">
                                 <FaClock className="w-5 h-5 mr-2 text-indigo-500" />
                                 <span className="font-semibold text-lg">Pickup Time Window:</span>
                             </div>
-                            <p className="text-gray-800 ml-7">{donation.pickupWindow}</p>
+                            <p className="text-gray-800 dark:text-gray-400 ml-7">{donation.pickupWindow}</p>
                         </div>
 
                         {/* Status */}
                         <div className="flex flex-col">
-                            <div className="flex items-center text-gray-600 mb-1">
-                                <FaCheckCircle className="w-5 h-5 mr-2 text-gray-500" />
+                            <div className="flex items-center dark:text-gray-200 text-gray-600 mb-1">
+                                <FaCheckCircle className="w-5 h-5 mr-2 dark:text-gray-400 text-gray-500" />
                                 <span className="font-semibold text-lg">Status:</span>
                             </div>
 
-                            <span className='bg-green-300  w-25 inline-block ml-7 px-4 py-1 rounded-full text-sm font-medium'>
+                            <span className='bg-green-300 dark:bg-gray-800  w-25 inline-block ml-7 px-4 py-1 rounded-full text-sm font-medium'>
                                 {DonationStatus}
                             </span>
                         </div>
@@ -317,7 +317,7 @@ const DetailsPage = ({ donateData }) => {
 
                 {/* Action Buttons */}
                 <div className="flex flex-wrap gap-4">
-                    <button onClick={handleAddToFavorite} className="bg-blue-500 text-white px-4 py-2 rounded-xl hover:bg-blue-600">
+                    <button onClick={handleAddToFavorite} className="bg-blue-500  text-white px-4 py-2 rounded-xl hover:bg-blue-600">
                         Save to Favorites
                     </button>
                     {/* request donation with modal */}
@@ -406,7 +406,7 @@ const DetailsPage = ({ donateData }) => {
                 </div>
 
                 {/* Reviews Section */}
-                <div className="bg-gray-100 rounded-xl p-6 space-y-4">
+                <div className="bg-gray-100 dark:bg-gray-900 rounded-xl p-6 space-y-4">
                     <h2 className="text-xl font-semibold">Reviews</h2>
 
                     <div className="space-y-3">
@@ -437,8 +437,8 @@ const DetailsPage = ({ donateData }) => {
                         </button>
 
                         {/* Review Modal */}
-                        <dialog id="review_modal" className="modal modal-bottom sm:modal-middle">
-                            <form onSubmit={handleReview} method="dialog" className="modal-box">
+                        <dialog id="review_modal" className="modal  modal-bottom sm:modal-middle">
+                            <form onSubmit={handleReview} method="dialog" className="modal-box dark:bg-gray-900">
                                 <h3 className="font-bold text-lg mb-4">Save Review</h3>
 
                                 {/* Reviewer Name */}
@@ -447,7 +447,7 @@ const DetailsPage = ({ donateData }) => {
                                     type="text"
                                     name="reviewerName"
                                     placeholder="write your name"
-                                    className="input input-bordered w-full mb-3"
+                                    className="input dark:bg-gray-800 input-bordered w-full mb-3"
                                     required
                                 />
 
@@ -456,7 +456,7 @@ const DetailsPage = ({ donateData }) => {
                                 <textarea
                                     name="description"
                                     placeholder="write description"
-                                    className="textarea textarea-bordered w-full mb-3"
+                                    className="textarea dark:bg-gray-800 textarea-bordered w-full mb-3"
                                     required
                                 ></textarea>
 
@@ -464,7 +464,7 @@ const DetailsPage = ({ donateData }) => {
                                 <label className="block font-semibold mb-1">Rating:</label>
                                 <select
                                     name="rating"
-                                    className="select select-bordered w-full mb-4"
+                                    className="select dark:bg-gray-800 select-bordered w-full mb-4"
                                     required
                                 >
                                     <option value="">Give Rating</option>
